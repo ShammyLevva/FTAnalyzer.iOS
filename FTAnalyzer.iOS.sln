@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTAnalyzer.iOS", "FTAnalyzer.iOS\FTAnalyzer.iOS.csproj", "{C0954D77-E302-4833-8186-1BA0567FEF15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTAnalyzer", "FTAnalyzer.iOS\FTAnalyzer.csproj", "{C0954D77-E302-4833-8186-1BA0567FEF15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
