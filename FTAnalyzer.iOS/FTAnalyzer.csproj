@@ -137,10 +137,10 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="LoadGedcomViewController.cs" />
+    <Compile Include="MainListsViewController.cs" />
     <Compile Include="SecondViewController.cs" />
-    <Compile Include="LoadGedcomViewController.designer.cs">
-      <DependentUpon>LoadGedcomViewController.cs</DependentUpon>
+    <Compile Include="MainListsViewController.designer.cs">
+      <DependentUpon>MainListsViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="SecondViewController.designer.cs">
       <DependentUpon>SecondViewController.cs</DependentUpon>

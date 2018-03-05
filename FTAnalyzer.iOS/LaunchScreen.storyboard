@@ -22,7 +22,7 @@
                         <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedRGB" red="0.996078431372549" green="0.95686274509803926" blue="0.803921568627451" alpha="1"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="633" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" image="HighResLogo.png" preservesSuperviewLayoutMargins="YES">
-                                <rect key="frame" x="483" y="299" width="400" height="400.5"/>
+                                <rect key="frame" x="508" y="337" width="350" height="350"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinX="YES" flexibleMaxY="YES" flexibleMinY="YES"/>
                             </imageView>
                         </subviews>

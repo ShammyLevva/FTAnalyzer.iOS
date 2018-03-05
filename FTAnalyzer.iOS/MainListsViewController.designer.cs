@@ -10,8 +10,8 @@ using System.CodeDom.Compiler;
 
 namespace FTAnalyzer.iOS
 {
-    [Register ("LoadGedcomViewController")]
-    partial class LoadGedcomViewController
+    [Register ("MainListsViewController")]
+    partial class MainListsViewController
     {
         void ReleaseDesignerOutlets ()
         {

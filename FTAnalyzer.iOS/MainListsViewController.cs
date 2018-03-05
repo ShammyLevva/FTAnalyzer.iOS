@@ -4,9 +4,9 @@ using UIKit;
 
 namespace FTAnalyzer.iOS
 {
-    public partial class LoadGedcomViewController : UIViewController
+    public partial class MainListsViewController : UIViewController
     {
-        protected LoadGedcomViewController(IntPtr handle) : base(handle)
+        protected MainListsViewController(IntPtr handle) : base(handle)
         {
             // Note: this .ctor should not contain any initialization logic.
         }
