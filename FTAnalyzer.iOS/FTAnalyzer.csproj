@@ -127,6 +127,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LoadGedcom.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -144,6 +145,10 @@
     <Compile Include="SecondViewController.designer.cs">
       <DependentUpon>SecondViewController.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
   <Import Project="..\..\FTAnalyzer.Shared\FTAnalyzer.Shared\FTAnalyzer.Shared.projitems" Label="Shared" Condition="Exists('..\..\FTAnalyzer.Shared\FTAnalyzer.Shared\FTAnalyzer.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
