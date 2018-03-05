@@ -16,7 +16,7 @@
         <!--First-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="LoadGedcomViewController" sceneMemberID="viewController" title="Load Gedcom">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -110,7 +110,41 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-423" y="26"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="HighResLogo.png" width="1024" height="1024"/>
+        <image name="arrow-left.png" width="16" height="16"/>
+        <image name="arrow-right.png" width="16" height="16"/>
+        <image name="Complete_OK.png" width="16" height="16"/>
+        <image name="CriticalError.png" width="16" height="16"/>
+        <image name="DeleteHS.png" width="16" height="16"/>
+        <image name="EditLocation.png" width="16" height="16"/>
+        <image name="Filter.png" width="16" height="16"/>
+        <image name="Flagged.png" width="16" height="16"/>
+        <image name="FTAnalyzer.ico" width="64" height="64"/>
+        <image name="GoogleMatch.png" width="16" height="16"/>
+        <image name="GooglePartial.png" width="16" height="16"/>
+        <image name="OS50kFuzzy.png" width="16" height="16"/>
+        <image name="OS50kMatch.png" width="16" height="16"/>
+        <image name="OS50kPartial.png" width="16" height="16"/>
+        <image name="OutOfBounds.png" width="16" height="16"/>
+        <image name="people35.png" width="35" height="35"/>
+        <image name="Pointer.bmp" width="16" height="16"/>
+        <image name="QuestionMark.png" width="16" height="16"/>
+        <image name="Restart.bmp" width="16" height="16"/>
+        <image name="Save.bmp" width="16" height="16"/>
+        <image name="SaveExit.bmp" width="16" height="16"/>
+        <image name="Scroll_NoText.png" width="16" height="16"/>
+        <image name="SeriousWarning.png" width="16" height="16"/>
+        <image name="Stop.bmp" width="16" height="16"/>
+        <image name="teardrop_black.png" width="21" height="34"/>
+        <image name="teardrop_blue.cur" width="21" height="34"/>
+        <image name="teardrop_blue.png" width="21" height="34"/>
+        <image name="teardrop_lightgreen.png" width="21" height="34"/>
+        <image name="teardrop_red.png" width="21" height="34"/>
+        <image name="Validate.png" width="16" height="16"/>
+        <image name="Warning.png" width="16" height="16"/>
+    </resources>
 </document>
