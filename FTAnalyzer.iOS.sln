@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FTAnalyzer", "FTAnalyzer.iOS\FTAnalyzer.csproj", "{C0954D77-E302-4833-8186-1BA0567FEF15}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FTAnalyzer.Shared", "..\FTAnalyzer.Shared\FTAnalyzer.Shared\FTAnalyzer.Shared.shproj", "{89621EBE-2416-4E13-BF69-F1C145908518}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
