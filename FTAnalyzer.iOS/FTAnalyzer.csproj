@@ -87,6 +87,16 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.8\lib\netstandard1.3\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\packages\HtmlAgilityPack.1.7.1\lib\netstandard2.0\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -121,6 +131,7 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -134,5 +145,6 @@
       <DependentUpon>SecondViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <Import Project="..\..\FTAnalyzer.Shared\FTAnalyzer.Shared\FTAnalyzer.Shared.projitems" Label="Shared" Condition="Exists('..\..\FTAnalyzer.Shared\FTAnalyzer.Shared\FTAnalyzer.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
