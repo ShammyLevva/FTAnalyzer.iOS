@@ -14,16 +14,12 @@ namespace FTAnalyzer.iOS
     [Register ("LoadGedcomViewController")]
     partial class LoadGedcomViewController
     {
-        [Outlet]
+        [Action ("UIButton548_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel TitleLabel { get; set; }
+        partial void UIButton548_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
-            if (TitleLabel != null) {
-                TitleLabel.Dispose ();
-                TitleLabel = null;
-            }
         }
     }
 }

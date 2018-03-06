@@ -25,23 +25,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinX="YES" flexibleMaxY="YES" flexibleMinY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="548" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="592" y="705" width="181" height="88"/>
+                                <rect key="frame" x="477" y="705" width="412" height="88"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                <state key="normal" title="Browse"/>
+                                <state key="normal" title="Load GEDCOM File"/>
+                                <connections>
+                                    <action selector="UIButton548_TouchUpInside:" destination="209" id="2352" eventType="touchUpInside"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Family Tree Analyzer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1946" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="458" y="156" width="487" height="197"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="60"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                     </view>
-                    <connections>
-                        <outlet property="TitleLabel" destination="1946" id="name-outlet-1946"/>
-                    </connections>
+                    <connections/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="211" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,9 +75,6 @@
         <image name="teardrop_red.png" width="21" height="34"/>
         <image name="Validate.png" width="16" height="16"/>
         <image name="Warning.png" width="16" height="16"/>
-        <image name="iOSIcons/Complete_OK.png" width="16" height="16"/>
-        <image name="iOSIcons/CriticalError.png" width="16" height="16"/>
-        <image name="iOSIcons/DeleteHS.png" width="16" height="16"/>
         <image name="iOSIcons/EditLocation.png" width="16" height="16"/>
         <image name="iOSIcons/Filter.png" width="16" height="16"/>
         <image name="iOSIcons/Flagged.png" width="16" height="16"/>
