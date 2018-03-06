@@ -75,10 +75,6 @@
         <image name="teardrop_red.png" width="21" height="34"/>
         <image name="Validate.png" width="16" height="16"/>
         <image name="Warning.png" width="16" height="16"/>
-        <image name="iOSIcons/OutOfBounds.png" width="16" height="16"/>
-        <image name="iOSIcons/Pointer.png" width="16" height="16"/>
-        <image name="iOSIcons/QuestionMark.png" width="16" height="16"/>
-        <image name="iOSIcons/Restart.png" width="16" height="16"/>
         <image name="iOSIcons/Save.png" width="16" height="16"/>
         <image name="iOSIcons/SaveExit.png" width="16" height="16"/>
         <image name="iOSIcons/Scroll_NoText.png" width="16" height="16"/>
