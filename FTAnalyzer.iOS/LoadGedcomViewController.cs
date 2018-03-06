@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using CoreGraphics;
 using UIKit;
 
@@ -22,5 +23,17 @@ namespace FTAnalyzer.iOS
             };
             Add(label);
 		}
+
+        partial void SelectGedcomFile(UIButton sender)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string LoadText (string filename) {
+            var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine (documentsPath, filename);
+            return File.ReadAllText (filePath);
+        }
+
 	}
 }
