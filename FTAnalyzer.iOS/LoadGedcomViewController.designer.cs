@@ -14,9 +14,9 @@ namespace FTAnalyzer.iOS
     [Register ("LoadGedcomViewController")]
     partial class LoadGedcomViewController
     {
-        [Action ("UIButton548_TouchUpInside:")]
+        [Action ("SelectGedcomFile:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void UIButton548_TouchUpInside (UIKit.UIButton sender);
+        partial void SelectGedcomFile (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
