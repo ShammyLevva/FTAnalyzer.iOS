@@ -10,7 +10,6 @@ namespace FTAnalyzer.iOS
 {
     public partial class LoadGedcomViewController : UIViewController
     {
-
         public LoadGedcomViewController (IntPtr handle) : base (handle)
         {
         }
@@ -30,11 +29,14 @@ namespace FTAnalyzer.iOS
 
         partial void SelectGedcomButtonEvent(UIButton sender)
         {
-            PickFile();
-            var pickedFile = Task.Run(() => PickFile());
+            pickedFile = CrossFilePicker.Current.PickFile();
+//            var pickedFile = CrossFilePicker.Current.PickFile();
+//            var filename = pickedFile.Result.FileName;
+//            var filepath = pickedFile.Result.FilePath;
+//            Console.WriteLine("Filepath: " + filepath + " and Filename: " + filename);
         }
 
-        async Task<FileData> PickFile()
+        async Task<FileData> PickGedcomFile()
         {
             var pickedFile = await CrossFilePicker.Current.PickFile();
             return pickedFile;

@@ -30,8 +30,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                 <state key="normal" title="Load GEDCOM File"/>
                                 <connections>
-                                    <action selector="SelectGedcomFile:" destination="209" id="3922" eventType="touchDown"/>
-                                    <action selector="UIButton548_TouchUpInside:" destination="209" id="5306" eventType="touchUpInside"/>
+                                    <action selector="SelectGedcomButtonEvent:" destination="209" id="7071" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -76,14 +75,5 @@
         <image name="teardrop_red.png" width="21" height="34"/>
         <image name="Validate.png" width="16" height="16"/>
         <image name="Warning.png" width="16" height="16"/>
-        <image name="iOSIcons/Validate.png" width="16" height="16"/>
-        <image name="iOSIcons/Warning.png" width="16" height="16"/>
-        <image name="iOSIcons/arrow-left.png" width="16" height="16"/>
-        <image name="iOSIcons/arrow-right.png" width="16" height="16"/>
-        <image name="iOSIcons/people35.png" width="35" height="35"/>
-        <image name="iOSIcons/teardrop_black.png" width="21" height="34"/>
-        <image name="iOSIcons/teardrop_blue.png" width="21" height="34"/>
-        <image name="iOSIcons/teardrop_lightgreen.png" width="21" height="34"/>
-        <image name="iOSIcons/teardrop_red.png" width="21" height="34"/>
     </resources>
 </document>
