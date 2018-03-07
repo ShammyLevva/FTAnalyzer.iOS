@@ -29,16 +29,16 @@ namespace FTAnalyzer.iOS
 
         partial void SelectGedcomButtonEvent(UIButton sender)
         {
-            pickedFile = CrossFilePicker.Current.PickFile();
-//            var pickedFile = CrossFilePicker.Current.PickFile();
-//            var filename = pickedFile.Result.FileName;
-//            var filepath = pickedFile.Result.FilePath;
-//            Console.WriteLine("Filepath: " + filepath + " and Filename: " + filename);
+            CrossFilePicker.Current.PickFile();
+       //     Task.Run(() => PickGedcomFile());
         }
 
         async Task<FileData> PickGedcomFile()
         {
-            var pickedFile = await CrossFilePicker.Current.PickFile();
+            FileData pickedFile = await CrossFilePicker.Current.PickFile();
+            var filename = pickedFile.FileName;
+            var filepath = pickedFile.FilePath;
+
             return pickedFile;
         }
 
