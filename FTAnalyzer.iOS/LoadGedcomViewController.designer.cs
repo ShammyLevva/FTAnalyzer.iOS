@@ -15,6 +15,10 @@ namespace FTAnalyzer.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextView Messages { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITapGestureRecognizer TapGestureRecogniser { get; set; }
 
         [Outlet]
@@ -31,6 +35,11 @@ namespace FTAnalyzer.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (Messages != null) {
+                Messages.Dispose ();
+                Messages = null;
+            }
+
             if (TapGestureRecogniser != null) {
                 TapGestureRecogniser.Dispose ();
                 TapGestureRecogniser = null;
