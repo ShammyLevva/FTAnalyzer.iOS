@@ -158,6 +158,13 @@
     <Compile Include="LoadGedcomViewController.designer.cs">
       <DependentUpon>LoadGedcomViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="GedcomDocument.cs" />
+    <Compile Include="BindingListTableSource.cs" />
+    <Compile Include="BindingListViewController.cs" />
+    <Compile Include="GedcomDocumentViewController.cs" />
+    <Compile Include="GedcomDocumentViewController.designer.cs">
+      <DependentUpon>GedcomDocumentViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

@@ -52,6 +52,26 @@
             </objects>
             <point key="canvasLocation" x="488" y="-113"/>
         </scene>
+        <scene sceneID="9100">
+            <objects>
+                <viewController id="9101" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9098"/>
+                        <viewControllerLayoutGuide type="bottom" id="9099"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9102" customClass="GedcomDocumentViewController">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="GedcomDocumentViewController" destination="9102" id="name-outlet-9102"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9103" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1086" y="219"/>
+        </scene>
     </scenes>
     <resources>
         <image name="HighResLogo.png" width="1024" height="1024"/>

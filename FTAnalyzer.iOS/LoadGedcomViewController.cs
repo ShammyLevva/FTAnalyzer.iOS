@@ -64,6 +64,8 @@ namespace FTAnalyzer.iOS
             //await Task.Run(() => _familyTree.LoadTreeIndividuals(doc, individualProgress, outputText));
             //await Task.Run(() => _familyTree.LoadTreeFamilies(doc, familyProgress, outputText));
             //await Task.Run(() => _familyTree.LoadTreeRelationships(doc, RelationshipProgress, outputText));
+            var message = UIAlertController.Create("FTAnalyzer", "Hello World!",UIAlertControllerStyle.Alert);
+            PresentViewController(message, true, null);
             return true;
         }
 
