@@ -7,16 +7,15 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace FTAnalyzer.iOS
 {
     [Register ("LoadGedcomViewController")]
     partial class LoadGedcomViewController
     {
-        [Action ("SelectGedcomFile:")]
+        [Action ("SelectGedcomButtonEvent:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void SelectGedcomFile (UIKit.UIButton sender);
+        partial void SelectGedcomButtonEvent (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {

@@ -31,6 +31,7 @@
                                 <state key="normal" title="Load GEDCOM File"/>
                                 <connections>
                                     <action selector="SelectGedcomFile:" destination="209" id="3922" eventType="touchDown"/>
+                                    <action selector="UIButton548_TouchUpInside:" destination="209" id="5306" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -75,11 +76,6 @@
         <image name="teardrop_red.png" width="21" height="34"/>
         <image name="Validate.png" width="16" height="16"/>
         <image name="Warning.png" width="16" height="16"/>
-        <image name="iOSIcons/Save.png" width="16" height="16"/>
-        <image name="iOSIcons/SaveExit.png" width="16" height="16"/>
-        <image name="iOSIcons/Scroll_NoText.png" width="16" height="16"/>
-        <image name="iOSIcons/SeriousWarning.png" width="16" height="16"/>
-        <image name="iOSIcons/Stop.png" width="16" height="16"/>
         <image name="iOSIcons/Validate.png" width="16" height="16"/>
         <image name="iOSIcons/Warning.png" width="16" height="16"/>
         <image name="iOSIcons/arrow-left.png" width="16" height="16"/>

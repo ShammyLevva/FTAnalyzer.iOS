@@ -1,12 +1,16 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using CoreGraphics;
+using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
 using UIKit;
 
 namespace FTAnalyzer.iOS
 {
     public partial class LoadGedcomViewController : UIViewController
     {
+
         public LoadGedcomViewController (IntPtr handle) : base (handle)
         {
         }
@@ -24,12 +28,19 @@ namespace FTAnalyzer.iOS
             Add(label);
 		}
 
-        partial void SelectGedcomFile(UIButton sender)
+        partial void SelectGedcomButtonEvent(UIButton sender)
         {
-            throw new NotImplementedException();
+            PickFile();
+            var pickedFile = Task.Run(() => PickFile());
         }
 
-        public string LoadText (string filename) {
+        async Task<FileData> PickFile()
+        {
+            var pickedFile = await CrossFilePicker.Current.PickFile();
+            return pickedFile;
+        }
+
+        public string LoadFile (string filename) {
             var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
             var filePath = Path.Combine (documentsPath, filename);
             return File.ReadAllText (filePath);
