@@ -25,19 +25,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinX="YES" flexibleMaxY="YES" flexibleMinY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="548" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="477" y="705" width="412" height="88"/>
+                                <rect key="frame" x="524" y="675" width="318" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Load GEDCOM File"/>
                                 <connections>
                                     <action selector="SelectGedcomButtonEvent:" destination="209" id="7071" eventType="touchUpInside"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <connections>
+                            <outletCollection id="8837" property="gestureRecognizers" destination="8836"/>
+                        </connections>
                     </view>
-                    <connections/>
+                    <connections>
+                        <outlet property="TapGestureRecogniser" destination="8836" id="name-outlet-8836"/>
+                        <outlet property="TreeImage" destination="287" id="name-outlet-287"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="211" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8836">
+                    <connections>
+                        <action selector="ImageTapEvent:" destination="209" id="8840"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="488" y="-113"/>
         </scene>

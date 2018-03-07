@@ -13,12 +13,33 @@ namespace FTAnalyzer.iOS
     [Register ("LoadGedcomViewController")]
     partial class LoadGedcomViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITapGestureRecognizer TapGestureRecogniser { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView TreeImage { get; set; }
+
+        [Action ("ImageTapEvent:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ImageTapEvent (UIKit.UITapGestureRecognizer sender);
+
         [Action ("SelectGedcomButtonEvent:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SelectGedcomButtonEvent (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
+            if (TapGestureRecogniser != null) {
+                TapGestureRecogniser.Dispose ();
+                TapGestureRecogniser = null;
+            }
+
+            if (TreeImage != null) {
+                TreeImage.Dispose ();
+                TreeImage = null;
+            }
         }
     }
 }
