@@ -14,9 +14,6 @@ namespace FTAnalyzer.iOS
         {
         }
 
-        [Export("canConcurrentlyReadDocumentsOfType:")]
-        public static bool CanConcurrentlyReadDocumentsOfType(string fileType) => true;
-
         public override bool ReadFromUrl(NSUrl url, string typeName, out NSError outError)
         {
             outError = NSError.FromDomain(NSError.OsStatusErrorDomain, -4);

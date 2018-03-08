@@ -16,49 +16,58 @@ namespace FTAnalyzer.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIProgressView FamiliesProgress { get; set; }
+        UIKit.UIProgressView _familiesProgress { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        FTAnalyzer.iOS.GedcomDocumentViewController GedcomDocumentViewController { get; set; }
+        UIKit.UIProgressView _individualsProgress { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIProgressView IndividualsProgress { get; set; }
+        UIKit.UIProgressView _relationshipsProgress { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIProgressView RelationshipsProgress { get; set; }
+        UIKit.UIProgressView _sourcesProgress { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIProgressView SourcesProgress { get; set; }
+        UIKit.UITextView _statusTextView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        FTAnalyzer.iOS.GedcomDocumentViewController GedcomReport { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (FamiliesProgress != null) {
-                FamiliesProgress.Dispose ();
-                FamiliesProgress = null;
+            if (_familiesProgress != null) {
+                _familiesProgress.Dispose ();
+                _familiesProgress = null;
             }
 
-            if (GedcomDocumentViewController != null) {
-                GedcomDocumentViewController.Dispose ();
-                GedcomDocumentViewController = null;
+            if (_individualsProgress != null) {
+                _individualsProgress.Dispose ();
+                _individualsProgress = null;
             }
 
-            if (IndividualsProgress != null) {
-                IndividualsProgress.Dispose ();
-                IndividualsProgress = null;
+            if (_relationshipsProgress != null) {
+                _relationshipsProgress.Dispose ();
+                _relationshipsProgress = null;
             }
 
-            if (RelationshipsProgress != null) {
-                RelationshipsProgress.Dispose ();
-                RelationshipsProgress = null;
+            if (_sourcesProgress != null) {
+                _sourcesProgress.Dispose ();
+                _sourcesProgress = null;
             }
 
-            if (SourcesProgress != null) {
-                SourcesProgress.Dispose ();
-                SourcesProgress = null;
+            if (_statusTextView != null) {
+                _statusTextView.Dispose ();
+                _statusTextView = null;
+            }
+
+            if (GedcomReport != null) {
+                GedcomReport.Dispose ();
+                GedcomReport = null;
             }
         }
     }

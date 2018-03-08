@@ -116,22 +116,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="9529" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="9529" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="empty text box">
                                 <rect key="frame" x="77" y="232" width="1269" height="757"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="GedcomDocumentViewController" destination="9102" id="name-outlet-9102"/>
-                        <outlet property="SourcesProgress" destination="9520" id="name-outlet-9520"/>
-                        <outlet property="IndividualsProgress" destination="9521" id="name-outlet-9521"/>
-                        <outlet property="FamiliesProgress" destination="9522" id="name-outlet-9522"/>
-                        <outlet property="RelationshipsProgress" destination="9523" id="name-outlet-9523"/>
+                        <outlet property="GedcomReport" destination="9102" id="name-outlet-9102"/>
+                        <outlet property="_sourcesProgress" destination="9520" id="name-outlet-9520"/>
+                        <outlet property="_individualsProgress" destination="9521" id="name-outlet-9521"/>
+                        <outlet property="_familiesProgress" destination="9522" id="name-outlet-9522"/>
+                        <outlet property="_relationshipsProgress" destination="9523" id="name-outlet-9523"/>
+                        <outlet property="_statusTextView" destination="9529" id="name-outlet-9529"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9103" userLabel="First Responder" sceneMemberID="firstResponder"/>
