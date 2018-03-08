@@ -45,10 +45,9 @@ namespace FTAnalyzer.iOS
         async Task PickGedcomFile()
         {
             FileData pickedFile = await CrossFilePicker.Current.PickFile();
-            var filename = pickedFile.FileName;
-            var filepath = pickedFile.FilePath;
+            var filename = pickedFile.FilePath + pickedFile.FileName;
 
-            await LoadTreeAsync(filepath + filename);
+            await LoadTreeAsync(filename);
         }
 
         async Task<bool> LoadTreeAsync(string filename)
