@@ -181,6 +181,9 @@
     <Compile Include="GedcomDocumentViewController.designer.cs">
       <DependentUpon>GedcomDocumentViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataGridView.xaml.cs">
+      <DependentUpon>DataGridView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
@@ -190,6 +193,12 @@
     <BundleResource Include="Resources\Fonts\KUNSTLER.TTF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataGridView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\..\FTAnalyzer.Shared\FTAnalyzer.Shared\FTAnalyzer.Shared.projitems" Label="Shared" Condition="Exists('..\..\FTAnalyzer.Shared\FTAnalyzer.Shared\FTAnalyzer.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -8,7 +8,7 @@ using Xamarin.Forms.DataGrid;
 
 namespace FTAnalyzer.iOS
 {
-    public class BindingListTableSource<T> : DataGrid
+    public class BindingListTableSource<T> : UITableViewSource
     {
         const string CellIdentifier = "TableCell";
 
@@ -41,7 +41,8 @@ namespace FTAnalyzer.iOS
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier); 
             }
 
-            var index = Array.IndexOf(_fieldNames, tableColumn.Title);
+            //var index = Array.IndexOf(_fieldNames, tableColumn.Title);
+            var index = 0;
             var propertyValue = _properties[index].GetValue(item);
             cell.TextLabel.Text = propertyValue.ToString();
 

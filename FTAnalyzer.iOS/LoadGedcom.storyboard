@@ -33,13 +33,6 @@
                                     <action selector="SelectGedcomButtonEvent:" destination="209" id="7071" eventType="touchUpInside"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="9524" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" preservesSuperviewLayoutMargins="YES">
-                                <rect key="frame" x="164" y="561" width="1270" height="744"/>
-                                <autoresizingMask key="autoresizingMask" heightSizable="YES" widthSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <connections>
                             <outletCollection id="8837" property="gestureRecognizers" destination="8836"/>
@@ -48,7 +41,6 @@
                     <connections>
                         <outlet property="TapGestureRecogniser" destination="8836" id="name-outlet-8836"/>
                         <outlet property="TreeImage" destination="287" id="name-outlet-287"/>
-                        <outlet property="Messages" destination="9524" id="name-outlet-9524"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="211" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -70,7 +62,7 @@
                     <view key="view" contentMode="scaleToFill" id="9102" customClass="GedcomDocumentViewController">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.996078431372549" green="0.95686274509803926" blue="0.803921568627451" alpha="1"/>
                         <subviews>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9520" fixedFrame="YES">
                                 <rect key="frame" x="285" y="74" width="150" height="2"/>
@@ -117,7 +109,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="9529" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="empty text box">
-                                <rect key="frame" x="77" y="232" width="1269" height="757"/>
+                                <rect key="frame" x="35" y="232" width="1311" height="757"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

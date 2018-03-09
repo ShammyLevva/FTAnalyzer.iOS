@@ -31,19 +31,19 @@ namespace FTAnalyzer.iOS
             var properties = typeof(T).GetProperties();
             foreach (var property in properties)
             {
-                var tableColumn = new 
-                {
-                    Identifier = property.Name,
-                    Width = 100,
-                    Editable = false,
-                    Hidden = false,
-                    Title = property.Name
-                };
-                _tableView.AddColumn(tableColumn);
+                //var tableColumn = new 
+                //{
+                //    Identifier = property.Name,
+                //    Width = 100,
+                //    Editable = false,
+                //    Hidden = false,
+                //    Title = property.Name
+                //};
+                //_tableView.AddColumn(tableColumn);
             }
             var scrollView = new UIScrollView
             {
-                DocumentView = _tableView
+                //DocumentView = _tableView
             };
             View = scrollView;
         }
@@ -56,7 +56,7 @@ namespace FTAnalyzer.iOS
                 return;
             }
 
-            var source = new BindingListTableSource<T>(list);
+            var source = new BindingListTableSource<T>(list, this);
             _tableView.Source = source;
             _tableView.ReloadData();
         }
