@@ -152,11 +152,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="Storyboards\" />
+    <Folder Include="DataHandlers\" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="LoadGedcom.storyboard" />
+    <InterfaceDefinition Include="Storyboards\LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="Storyboards\LoadGedcom.storyboard" />
+    <InterfaceDefinition Include="ViewControllers\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -166,32 +169,32 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="MainListsViewController.cs" />
-    <Compile Include="SecondViewController.cs" />
-    <Compile Include="MainListsViewController.designer.cs">
-      <DependentUpon>MainListsViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SecondViewController.designer.cs">
-      <DependentUpon>SecondViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoadGedcomViewController.cs" />
-    <Compile Include="LoadGedcomViewController.designer.cs">
-      <DependentUpon>LoadGedcomViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GedcomDocument.cs" />
-    <Compile Include="BindingListTableSource.cs" />
-    <Compile Include="BindingListViewController.cs" />
-    <Compile Include="GedcomDocumentViewController.cs" />
-    <Compile Include="GedcomDocumentViewController.designer.cs">
+    <Compile Include="ViewControllers\BindingListViewController.cs" />
+    <Compile Include="ViewControllers\GedcomDocumentViewController.cs" />
+    <Compile Include="ViewControllers\GedcomDocumentViewController.designer.cs">
       <DependentUpon>GedcomDocumentViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataGridView.xaml.cs">
+    <Compile Include="ViewControllers\LoadGedcomViewController.cs" />
+    <Compile Include="ViewControllers\LoadGedcomViewController.designer.cs">
+      <DependentUpon>LoadGedcomViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\MainListsViewController.cs" />
+    <Compile Include="ViewControllers\MainListsViewController.designer.cs">
+      <DependentUpon>MainListsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\SecondViewController.cs" />
+    <Compile Include="ViewControllers\SecondViewController.designer.cs">
+      <DependentUpon>SecondViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataHandlers\BindingListTableSource.cs" />
+    <Compile Include="DataHandlers\GedcomDocument.cs" />
+    <Compile Include="DataHandlers\DataGridView.xaml.cs">
       <DependentUpon>DataGridView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ITunesArtwork Include="iTunesArtwork%402x" />
-    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="Resources\iTunesArtwork" />
+    <ITunesArtwork Include="Resources\iTunesArtwork%402x" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Fonts\KUNSTLER.TTF">
@@ -199,7 +202,7 @@
     </BundleResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DataGridView.xaml">
+    <EmbeddedResource Include="DataHandlers\DataGridView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
