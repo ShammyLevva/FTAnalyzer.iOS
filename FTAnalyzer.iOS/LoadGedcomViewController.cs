@@ -64,10 +64,12 @@ namespace FTAnalyzer.iOS
             //await Task.Run(() => _familyTree.LoadTreeFamilies(doc, familyProgress, outputText));
             //await Task.Run(() => _familyTree.LoadTreeRelationships(doc, RelationshipProgress, outputText));
             var message = UIAlertController.Create("FTAnalyzer", "Hello World!",UIAlertControllerStyle.Alert);
+            await DoNothing();
             PresentViewController(message, true, null);
             return true;
         }
 
+        Task DoNothing() { return null; }
 
         public string LoadFile (string filename) {
             var documentsPath = Environment.GetFolderPath (Environment.SpecialFolder.Personal);
