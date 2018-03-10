@@ -1,6 +1,9 @@
 using Foundation;
 using System;
 using UIKit;
+using System.Threading.Tasks;
+using System.Xml;
+using FTAnalyzer;
 
 namespace FTAnalyzer.iOS
 {
@@ -11,6 +14,7 @@ namespace FTAnalyzer.iOS
         IProgress<int> _individuals;
         IProgress<int> _families;
         IProgress<int> _relationships;
+        FamilyTree _familyTree;
 
         public GedcomDocumentViewController(IntPtr handle) : base(handle)
         {
@@ -19,6 +23,7 @@ namespace FTAnalyzer.iOS
             _individuals = new Progress<int>(percent => SetProgress(_individualsProgress, percent));
             _families = new Progress<int>(percent => SetProgress(_familiesProgress, percent));
             _relationships = new Progress<int>(percent => SetProgress(_relationshipsProgress, percent));
+            _familyTree = FamilyTree.Instance;
         }
 
         public IProgress<string> Messages => _messages;
@@ -70,5 +75,32 @@ namespace FTAnalyzer.iOS
 
             progressBar.SetProgress(percent, true);
         }
+
+
+        public async Task<bool> LoadTreeAsync(string filename)
+        {
+            var outputText = new Progress<string>(value => { _statusTextView.AppendText(value); });
+            XmlDocument doc = await Task.Run(() => _familyTree.LoadTreeHeader(filename, outputText));
+            if (doc == null) return false;
+            var sourceProgress = new Progress<int>(value => { _sourcesProgress.SetProgress(value, false); });
+            var individualProgress = new Progress<int>(value => { _individualsProgress.SetProgress(value, false); });
+            var familyProgress = new Progress<int>(value => { _familiesProgress.SetProgress(value, false); });
+            var RelationshipProgress = new Progress<int>(value => { _relationshipsProgress.SetProgress(value, false); });
+            await Task.Run(() => _familyTree.LoadTreeSources(doc, sourceProgress, outputText));
+            await Task.Run(() => _familyTree.LoadTreeIndividuals(doc, individualProgress, outputText));
+            await Task.Run(() => _familyTree.LoadTreeFamilies(doc, familyProgress, outputText));
+            await Task.Run(() => _familyTree.LoadTreeRelationships(doc, RelationshipProgress, outputText));
+            var message = UIAlertController.Create("FTAnalyzer", "Loaded Gedcom File", UIAlertControllerStyle.Alert);
+            PresentViewController(message, true, null);
+            return true;
+        }
+
+        public string LoadFile(string filename)
+        {
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine(documentsPath, filename);
+            return File.ReadAllText(filePath);
+        }
+
     }
 }
