@@ -15,6 +15,10 @@ namespace FTAnalyzer.iOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton LoadFileButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITapGestureRecognizer TapGestureRecogniser { get; set; }
 
         [Outlet]
@@ -31,6 +35,11 @@ namespace FTAnalyzer.iOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (LoadFileButton != null) {
+                LoadFileButton.Dispose ();
+                LoadFileButton = null;
+            }
+
             if (TapGestureRecogniser != null) {
                 TapGestureRecogniser.Dispose ();
                 TapGestureRecogniser = null;

@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using System;
+using Foundation;
 using UIKit;
 
 namespace FTAnalyzer.iOS
@@ -8,6 +9,8 @@ namespace FTAnalyzer.iOS
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
+        public GedcomDocument Document { get; set; }
+
         // class-level declarations
 
         public override UIWindow Window
@@ -54,6 +57,35 @@ namespace FTAnalyzer.iOS
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
+
+        public void OpenDocument(NSUrl url)
+        {
+
+            Console.WriteLine("Attempting to open: {0}", url);
+            Document = new GedcomDocument(url);
+
+            // Open the document
+            Document.Open((success) => {
+                if (success)
+                    Console.WriteLine("Document Opened");
+                else
+                    Console.WriteLine("Failed to Open Document");
+            });
+
+            // Inform caller
+            RaiseDocumentLoaded(Document);
+        }
+
+        #region Events
+        public delegate void DocumentLoadedDelegate(GedcomDocument document);
+        public event DocumentLoadedDelegate DocumentLoaded;
+
+        internal void RaiseDocumentLoaded(GedcomDocument document)
+        {
+            // Inform caller
+            this.DocumentLoaded?.Invoke(document);
+        }
+        #endregion
     }
 }
 

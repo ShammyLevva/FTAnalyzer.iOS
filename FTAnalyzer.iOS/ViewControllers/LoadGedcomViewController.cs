@@ -1,9 +1,8 @@
 using System;
-using System.IO;
+using CloudKit;
 using System.Threading.Tasks;
 using CoreGraphics;
-using Plugin.FilePicker;
-using Plugin.FilePicker.Abstractions;
+using MobileCoreServices;
 using UIKit;
 
 namespace FTAnalyzer.iOS
@@ -11,6 +10,7 @@ namespace FTAnalyzer.iOS
     public partial class LoadGedcomViewController : UIViewController
     {
         FamilyTree _familyTree;
+
         public LoadGedcomViewController (IntPtr handle) : base (handle)
         {
             _familyTree = FamilyTree.Instance;
@@ -30,25 +30,49 @@ namespace FTAnalyzer.iOS
             TreeImage.AddGestureRecognizer(TapGestureRecogniser);
 		}
 
-        partial void ImageTapEvent(UITapGestureRecognizer sender)
+        #region Computed Properties
+        /// <summary>
+        /// Returns the delegate of the current running application
+        /// </summary>
+        /// <value>The this app.</value>
+        public AppDelegate ThisApp
         {
-            Task<string>.Run(() => PickGedcomFile());
+            get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
         }
+        #endregion
 
         partial void SelectGedcomButtonEvent(UIButton sender)
         {
-            //CrossFilePicker.Current.PickFile();
-            Task<string>.Run(() => PickGedcomFile());
+            PickFile();
         }
 
-        async Task PickGedcomFile()
+        void PickFile()
         {
-            FileData pickedFile = await CrossFilePicker.Current.PickFile();
-            var filename = pickedFile.FilePath + pickedFile.FileName;
-            //having picked the file now display the GedcomDocumentViewController and load the tree
-            //await LoadTreeAsync(filename);
-        }
+            // Allow the Document picker to select a range of document types
+            string[] allowedUTIs = { UTType.CreatePreferredIdentifier(UTType.TagClassFilenameExtension, "ged", null) };
 
+            // Display the picker
+            var picker = new UIDocumentPickerViewController (allowedUTIs, UIDocumentPickerMode.Open);
+            // Wireup Document Picker
+            picker.DidPickDocument += (sndr, pArgs) => {
 
+                // IMPORTANT! You must lock the security scope before you can
+                // access this file
+                var securityEnabled = pArgs.Url.StartAccessingSecurityScopedResource();
+
+                // Open the document
+                ThisApp.OpenDocument(pArgs.Url);
+
+                // IMPORTANT! You must release the security lock established
+                // above.
+                pArgs.Url.StopAccessingSecurityScopedResource();
+            };
+            picker.DidPickDocumentAtUrls += (sndr, pArgs) => {
+                ThisApp.OpenDocument(pArgs.Urls[0]);
+            };
+
+            // Display the document picker
+            PresentViewController(picker, true, null);
+         }
 	}
 }

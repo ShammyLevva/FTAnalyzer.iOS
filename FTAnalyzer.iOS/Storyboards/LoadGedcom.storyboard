@@ -41,6 +41,7 @@
                     <connections>
                         <outlet property="TapGestureRecogniser" destination="8836" id="name-outlet-8836"/>
                         <outlet property="TreeImage" destination="287" id="name-outlet-287"/>
+                        <outlet property="LoadFileButton" destination="548" id="name-outlet-548"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="211" userLabel="First Responder" sceneMemberID="firstResponder"/>

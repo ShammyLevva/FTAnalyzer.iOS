@@ -9,64 +9,49 @@ namespace FTAnalyzer.iOS
     public class GedcomDocument : UIDocument
     {
         readonly FamilyTree _familyTree = FamilyTree.Instance;
+        NSString _dataModel;
 
-        protected internal GedcomDocument(IntPtr handle) : base(handle)
+        public GedcomDocument(NSUrl url) : base(url) 
         {
+            Contents = "";
         }
 
-        //public override bool ReadFromUrl(NSUrl url, string typeName, out NSError outError)
-        //{
-        //    outError = NSError.FromDomain(NSError.OsStatusErrorDomain, -4);
+        public GedcomDocument(NSUrl url, string contents) : base(url)
+        {
+            // Set the default document text
+            Contents = contents;
+        }
 
-        //    GedcomDocumentViewController documentViewController = null;
-        //    BindingListViewController<IDisplayIndividual> individualsViewController = null;
-        //    BindingListViewController<IDisplayFamily> familiesViewController = null;
-        //    BindingListViewController<IDisplaySource> sourcesViewController = null;
-        //    BindingListViewController<IDisplayOccupation> occupationsViewController = null;
-        //    BindingListViewController<IDisplayFact> factsViewController = null;
-        //    UITabBarController tabbedViewController = null;
+        public string Contents
+        {
+            get { return _dataModel.ToString(); }
+            set { _dataModel = new NSString(value); }
+        }
 
-        //    InvokeOnMainThread(() =>
-        //    {
-        //        var handle = new IntPtr();
-        //        documentViewController = new GedcomDocumentViewController(handle);
-        //        documentViewController.ClearAllProgress();
 
-        //        var mainListsViewController = tabbedViewController.ChildViewControllers[1] as UITabBarController;
+        #region Override Methods
+        public override bool LoadFromContents(NSObject contents, string typeName, out NSError outError)
+        {
+            outError = null;
+            if (contents != null)
+                _dataModel = NSString.FromData((NSData)contents, NSStringEncoding.UTF8);
 
-        //        individualsViewController = new BindingListViewController<IDisplayIndividual>("Individuals");
-        //        familiesViewController = new BindingListViewController<IDisplayFamily>("Families");
-        //        sourcesViewController = new BindingListViewController<IDisplaySource>("Sources");
-        //        occupationsViewController = new BindingListViewController<IDisplayOccupation>("Occupations");
-        //        factsViewController = new BindingListViewController<IDisplayFact>("Facts");
+            // Inform caller that the document has been modified
+            RaiseDocumentModified(this);
 
-        //        mainListsViewController.AddChildViewController(individualsViewController);
-        //        mainListsViewController.AddChildViewController(familiesViewController);
-        //        mainListsViewController.AddChildViewController(sourcesViewController);
-        //        mainListsViewController.AddChildViewController(occupationsViewController);
-        //        mainListsViewController.AddChildViewController(factsViewController);
-        //    });
+            return true;
+        }
+        #endregion
 
-        //    var document = _familyTree.LoadTreeHeader(url.Path, documentViewController.Messages);
-        //    if (document == null)
-        //    {
-        //        documentViewController.Messages.Report("\n\nUnable to load file " + url.Path + "\n");
-        //        return false;
-        //    }
+        #region Events
+        public delegate void DocumentModifiedDelegate(GedcomDocument document);
+        public event DocumentModifiedDelegate DocumentModified;
 
-        //    _familyTree.LoadTreeSources(document, documentViewController.Sources, documentViewController.Messages);
-        //    _familyTree.LoadTreeIndividuals(document, documentViewController.Individuals, documentViewController.Messages);
-        //    _familyTree.LoadTreeFamilies(document, documentViewController.Families, documentViewController.Messages);
-        //    _familyTree.LoadTreeRelationships(document, documentViewController.Relationships, documentViewController.Messages);
-
-        //    individualsViewController.RefreshDocumentView(_familyTree.AllDisplayIndividuals);
-        //    familiesViewController.RefreshDocumentView(_familyTree.AllDisplayFamilies);
-        //    sourcesViewController.RefreshDocumentView(_familyTree.AllDisplaySources);
-        //    occupationsViewController.RefreshDocumentView(_familyTree.AllDisplayOccupations);
-        //    factsViewController.RefreshDocumentView(_familyTree.AllDisplayFacts);
-
-        //    documentViewController.Messages.Report("\n\nFinished loading file " + url.Path + "\n");
-        //    return true;
-        //}
+        internal void RaiseDocumentModified(GedcomDocument document)
+        {
+            // Inform caller
+            this.DocumentModified?.Invoke(document);
+        }
+        #endregion
     }
 }
