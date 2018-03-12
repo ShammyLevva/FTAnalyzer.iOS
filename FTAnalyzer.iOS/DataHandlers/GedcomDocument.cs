@@ -50,7 +50,7 @@ namespace FTAnalyzer.iOS
         internal void RaiseDocumentModified(GedcomDocument document)
         {
             // Inform caller
-            this.DocumentModified?.Invoke(document);
+            DocumentModified?.Invoke(document);
         }
         #endregion
     }

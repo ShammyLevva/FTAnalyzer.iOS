@@ -67,7 +67,9 @@ namespace FTAnalyzer.iOS
             // Open the document
             Document.Open((success) => {
                 if (success)
+                {
                     Console.WriteLine("Document Opened");
+                }
                 else
                     Console.WriteLine("Failed to Open Document");
             });
@@ -83,7 +85,7 @@ namespace FTAnalyzer.iOS
         internal void RaiseDocumentLoaded(GedcomDocument document)
         {
             // Inform caller
-            this.DocumentLoaded?.Invoke(document);
+            DocumentLoaded?.Invoke(document);
         }
         #endregion
     }

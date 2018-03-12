@@ -31,6 +31,7 @@
                                 <state key="normal" title="Load GEDCOM File"/>
                                 <connections>
                                     <action selector="SelectGedcomButtonEvent:" destination="209" id="7071" eventType="touchUpInside"/>
+                                    <segue id="10158" destination="9101" kind="show"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -110,13 +111,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="9529" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="empty text box">
-                                <rect key="frame" x="35" y="232" width="1311" height="757"/>
+                                <rect key="frame" x="20" y="232" width="1326" height="757"/>
                                 <autoresizingMask key="autoresizingMask" heightSizable="YES" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
+                        <accessibility key="accessibilityConfiguration">
+                            <bool key="isElement" value="YES"/>
+                        </accessibility>
                     </view>
                     <connections>
                         <outlet property="GedcomReport" destination="9102" id="name-outlet-9102"/>

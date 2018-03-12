@@ -28,6 +28,7 @@ namespace FTAnalyzer.iOS
             };
             Add(label);
             TreeImage.AddGestureRecognizer(TapGestureRecogniser);
+
 		}
 
         #region Computed Properties
@@ -48,31 +49,22 @@ namespace FTAnalyzer.iOS
 
         void PickFile()
         {
-            // Allow the Document picker to select a range of document types
+            // Allow the Document picker to select files with ged extension
             string[] allowedUTIs = { UTType.CreatePreferredIdentifier(UTType.TagClassFilenameExtension, "ged", null) };
-
-            // Display the picker
             var picker = new UIDocumentPickerViewController (allowedUTIs, UIDocumentPickerMode.Open);
-            // Wireup Document Picker
-            picker.DidPickDocument += (sndr, pArgs) => {
-
-                // IMPORTANT! You must lock the security scope before you can
-                // access this file
-                var securityEnabled = pArgs.Url.StartAccessingSecurityScopedResource();
-
-                // Open the document
-                ThisApp.OpenDocument(pArgs.Url);
-
-                // IMPORTANT! You must release the security lock established
-                // above.
-                pArgs.Url.StopAccessingSecurityScopedResource();
-            };
-            picker.DidPickDocumentAtUrls += (sndr, pArgs) => {
+            picker.DidPickDocumentAtUrls += (sndr, pArgs) => 
+            {
                 ThisApp.OpenDocument(pArgs.Urls[0]);
+            };
+            ThisApp.DocumentLoaded += (doc) =>
+            {
+                this.NavigationController.PushViewController(new GedcomDocumentViewController(doc), true);
             };
 
             // Display the document picker
             PresentViewController(picker, true, null);
-         }
+        }
+
+
 	}
 }

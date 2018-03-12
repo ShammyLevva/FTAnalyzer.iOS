@@ -7,7 +7,7 @@ using FTAnalyzer;
 
 namespace FTAnalyzer.iOS
 {
-    public partial class GedcomDocumentViewController : UIView
+    public partial class GedcomDocumentViewController : UIViewController
     {
         IProgress<string> _messages;
         IProgress<int> _sources;
@@ -15,9 +15,11 @@ namespace FTAnalyzer.iOS
         IProgress<int> _families;
         IProgress<int> _relationships;
         FamilyTree _familyTree;
+        GedcomDocument _document;
 
-        public GedcomDocumentViewController(IntPtr handle) : base(handle)
+        public GedcomDocumentViewController(GedcomDocument document)
         {
+            _document = document;
             _messages = new Progress<string>(AppendMessage);
             _sources = new Progress<int>(percent => SetProgress(_sourcesProgress, percent));
             _individuals = new Progress<int>(percent => SetProgress(_individualsProgress, percent));
@@ -79,7 +81,7 @@ namespace FTAnalyzer.iOS
 
         public async Task<bool> LoadTreeAsync(string filename)
         {
-            var outputText = new Progress<string>(value => {AppendMessage(value); });
+            var outputText = new Progress<string>(AppendMessage);
             XmlDocument doc = _familyTree.LoadTreeHeader(filename, outputText);
             if (doc == null) return false;
             var sourceProgress = new Progress<int>(value => { SetProgress(_sourcesProgress, value); });
@@ -90,9 +92,63 @@ namespace FTAnalyzer.iOS
             await Task.Run(() => _familyTree.LoadTreeIndividuals(doc, individualProgress, outputText));
             await Task.Run(() => _familyTree.LoadTreeFamilies(doc, familyProgress, outputText));
             await Task.Run(() => _familyTree.LoadTreeRelationships(doc, RelationshipProgress, outputText));
-            //var message = UIAlertController.Create("FTAnalyzer", "Loaded Gedcom File", UIAlertControllerStyle.Alert);
-            //PresentViewController(message, true, null);
             return true;
         }
+
+        //public override bool ReadFromUrl(NSUrl url, string typeName, out NSError outError)
+        //{
+        //    outError = NSError.FromDomain(NSError.OsStatusErrorDomain, -4);
+
+        //    GedcomDocumentViewController documentViewController = null;
+        //    BindingListViewController<IDisplayIndividual> individualsViewController = null;
+        //    BindingListViewController<IDisplayFamily> familiesViewController = null;
+        //    BindingListViewController<IDisplaySource> sourcesViewController = null;
+        //    BindingListViewController<IDisplayOccupation> occupationsViewController = null;
+        //    BindingListViewController<IDisplayFact> factsViewController = null;
+        //    UITabBarController tabbedViewController = null;
+
+        //    InvokeOnMainThread(() =>
+        //    {
+        //        var handle = new IntPtr();
+        //        documentViewController = new GedcomDocumentViewController(handle);
+        //        documentViewController.ClearAllProgress();
+
+        //        var mainListsViewController = tabbedViewController.ChildViewControllers[1] as UITabBarController;
+
+        //        individualsViewController = new BindingListViewController<IDisplayIndividual>("Individuals");
+        //        familiesViewController = new BindingListViewController<IDisplayFamily>("Families");
+        //        sourcesViewController = new BindingListViewController<IDisplaySource>("Sources");
+        //        occupationsViewController = new BindingListViewController<IDisplayOccupation>("Occupations");
+        //        factsViewController = new BindingListViewController<IDisplayFact>("Facts");
+
+        //        mainListsViewController.AddChildViewController(individualsViewController);
+        //        mainListsViewController.AddChildViewController(familiesViewController);
+        //        mainListsViewController.AddChildViewController(sourcesViewController);
+        //        mainListsViewController.AddChildViewController(occupationsViewController);
+        //        mainListsViewController.AddChildViewController(factsViewController);
+        //    });
+
+        //    var document = _familyTree.LoadTreeHeader(url.Path, documentViewController.Messages);
+        //    if (document == null)
+        //    {
+        //        documentViewController.Messages.Report("\n\nUnable to load file " + url.Path + "\n");
+        //        return false;
+        //    }
+
+        //    _familyTree.LoadTreeSources(document, documentViewController.Sources, documentViewController.Messages);
+        //    _familyTree.LoadTreeIndividuals(document, documentViewController.Individuals, documentViewController.Messages);
+        //    _familyTree.LoadTreeFamilies(document, documentViewController.Families, documentViewController.Messages);
+        //    _familyTree.LoadTreeRelationships(document, documentViewController.Relationships, documentViewController.Messages);
+
+        //    individualsViewController.RefreshDocumentView(_familyTree.AllDisplayIndividuals);
+        //    familiesViewController.RefreshDocumentView(_familyTree.AllDisplayFamilies);
+        //    sourcesViewController.RefreshDocumentView(_familyTree.AllDisplaySources);
+        //    occupationsViewController.RefreshDocumentView(_familyTree.AllDisplayOccupations);
+        //    factsViewController.RefreshDocumentView(_familyTree.AllDisplayFacts);
+
+        //    documentViewController.Messages.Report("\n\nFinished loading file " + url.Path + "\n");
+        //    return true;
+        //}
+ 
     }
 }
