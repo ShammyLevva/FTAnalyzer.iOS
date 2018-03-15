@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using CoreGraphics;
 using MobileCoreServices;
 using UIKit;
+using Foundation;
 
 namespace FTAnalyzer.iOS
 {
@@ -44,27 +45,25 @@ namespace FTAnalyzer.iOS
 
         partial void SelectGedcomButtonEvent(UIButton sender)
         {
-            PickFile();
-        }
-
-        void PickFile()
-        {
             // Allow the Document picker to select files with ged extension
             string[] allowedUTIs = { UTType.CreatePreferredIdentifier(UTType.TagClassFilenameExtension, "ged", null) };
-            var picker = new UIDocumentPickerViewController (allowedUTIs, UIDocumentPickerMode.Open);
-            picker.DidPickDocumentAtUrls += (sndr, pArgs) => 
+            var picker = new UIDocumentPickerViewController(allowedUTIs, UIDocumentPickerMode.Open);
+            picker.DidPickDocumentAtUrls += (sndr, pArgs) =>
             {
                 ThisApp.OpenDocument(pArgs.Urls[0]);
             };
-            ThisApp.DocumentLoaded += (doc) =>
+            ThisApp.DocumentLoaded += () =>
             {
-                this.NavigationController.PushViewController(new GedcomDocumentViewController(doc), true);
+                PerformSegue("SegueToGedcomDocument", sender);
             };
 
             // Display the document picker
             PresentViewController(picker, true, null);
         }
 
-
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+            base.PrepareForSegue(segue, sender);
+		}
 	}
 }

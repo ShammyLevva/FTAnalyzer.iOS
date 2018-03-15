@@ -31,7 +31,7 @@
                                 <state key="normal" title="Load GEDCOM File"/>
                                 <connections>
                                     <action selector="SelectGedcomButtonEvent:" destination="209" id="7071" eventType="touchUpInside"/>
-                                    <segue id="10158" destination="9101" kind="show"/>
+                                    <segue id="13149" destination="9101" kind="show" identifier="SegueToGedcomDocument"/>
                                 </connections>
                             </button>
                         </subviews>

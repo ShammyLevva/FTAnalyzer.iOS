@@ -17,15 +17,15 @@ namespace FTAnalyzer.iOS
         FamilyTree _familyTree;
         GedcomDocument _document;
 
-        public GedcomDocumentViewController(GedcomDocument document)
+        public GedcomDocumentViewController(IntPtr handle) : base(handle)
         {
-            _document = document;
             _messages = new Progress<string>(AppendMessage);
             _sources = new Progress<int>(percent => SetProgress(_sourcesProgress, percent));
             _individuals = new Progress<int>(percent => SetProgress(_individualsProgress, percent));
             _families = new Progress<int>(percent => SetProgress(_familiesProgress, percent));
             _relationships = new Progress<int>(percent => SetProgress(_relationshipsProgress, percent));
             _familyTree = FamilyTree.Instance;
+            _document = null;
         }
 
         public IProgress<string> Messages => _messages;
@@ -33,6 +33,20 @@ namespace FTAnalyzer.iOS
         public IProgress<int> Individuals => _individuals;
         public IProgress<int> Families => _families;
         public IProgress<int> Relationships => _relationships;
+
+        public GedcomDocument Document
+        {
+            get { return _document; }
+            set { 
+                _document = value;
+                if (_document != null)
+                {
+                    ClearAllProgress();
+                    Task.Run(() => LoadTreeAsync(_document.URL.ToString()));
+                    SetupViews();
+                }
+            }
+        }
 
         public void ClearAllProgress()
         {
@@ -95,6 +109,10 @@ namespace FTAnalyzer.iOS
             return true;
         }
 
+        void SetupViews()
+        {
+            
+        }
         //public override bool ReadFromUrl(NSUrl url, string typeName, out NSError outError)
         //{
         //    outError = NSError.FromDomain(NSError.OsStatusErrorDomain, -4);

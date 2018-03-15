@@ -75,17 +75,17 @@ namespace FTAnalyzer.iOS
             });
 
             // Inform caller
-            RaiseDocumentLoaded(Document);
+            RaiseDocumentLoaded();
         }
 
         #region Events
-        public delegate void DocumentLoadedDelegate(GedcomDocument document);
+        public delegate void DocumentLoadedDelegate();
         public event DocumentLoadedDelegate DocumentLoaded;
 
-        internal void RaiseDocumentLoaded(GedcomDocument document)
+        internal void RaiseDocumentLoaded()
         {
             // Inform caller
-            DocumentLoaded?.Invoke(document);
+            DocumentLoaded?.Invoke();
         }
         #endregion
     }

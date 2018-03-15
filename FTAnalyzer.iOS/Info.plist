@@ -46,7 +46,7 @@
 			<string>GEDCOMDocument</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>*.ged</string>
+				<string>ged</string>
 			</array>
 			<key>CFBundleTypeIconFiles</key>
 			<array>
@@ -67,5 +67,22 @@
 	<true/>
 	<key>NSUbiquitousContainerIsDocumentScopePublic</key>
 	<true/>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeDescription</key>
+			<string>GEDCOM Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.ftanalyzer.ged</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeSize64IconFile</key>
+			<string>Assets.xcassets/AppIcon.appiconset/64</string>
+			<key>UTTypeSize320IconFile</key>
+			<string>Assets.xcassets/AppIcon.appiconset/320</string>
+		</dict>
+	</array>
 </dict>
 </plist>

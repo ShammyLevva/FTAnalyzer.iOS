@@ -13,14 +13,18 @@ namespace FTAnalyzer.iOS
 
         public GedcomDocument(NSUrl url) : base(url) 
         {
+            URL = url;
             Contents = "";
         }
 
         public GedcomDocument(NSUrl url, string contents) : base(url)
         {
             // Set the default document text
+            URL = url;
             Contents = contents;
         }
+
+        public NSUrl URL { get; set; }
 
         public string Contents
         {
@@ -34,10 +38,11 @@ namespace FTAnalyzer.iOS
         {
             outError = null;
             if (contents != null)
+            {
                 _dataModel = NSString.FromData((NSData)contents, NSStringEncoding.UTF8);
-
-            // Inform caller that the document has been modified
-            RaiseDocumentModified(this);
+                // Inform caller that the document has been modified
+                RaiseDocumentModified(this);
+            }
 
             return true;
         }
