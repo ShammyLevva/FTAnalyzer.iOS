@@ -2,6 +2,9 @@
 using Foundation;
 using UIKit;
 using FTAnalyzer.Utilities;
+using System.Xml;
+using System.IO;
+using System.Text;
 
 namespace FTAnalyzer.iOS
 {
@@ -11,7 +14,7 @@ namespace FTAnalyzer.iOS
         readonly FamilyTree _familyTree = FamilyTree.Instance;
         NSString _dataModel;
 
-        public GedcomDocument(NSUrl url) : base(url) 
+        public GedcomDocument(NSUrl url) : base(url)
         {
             URL = url;
             Contents = "";
@@ -30,6 +33,15 @@ namespace FTAnalyzer.iOS
         {
             get { return _dataModel.ToString(); }
             set { _dataModel = new NSString(value); }
+        }
+
+        public MemoryStream Stream
+        {
+            get 
+            { 
+                byte[] byteArray = Encoding.UTF8.GetBytes(Contents);
+                return new MemoryStream(byteArray);
+            }
         }
 
 

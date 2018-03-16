@@ -4,6 +4,8 @@ using UIKit;
 using System.Threading.Tasks;
 using System.Xml;
 using FTAnalyzer;
+using System.IO;
+using System.Web;
 
 namespace FTAnalyzer.iOS
 {
@@ -105,7 +107,8 @@ namespace FTAnalyzer.iOS
         public async Task<bool> LoadTreeAsync(string filename)
         {
             var outputText = new Progress<string>(AppendMessage);
-            XmlDocument doc = _familyTree.LoadTreeHeader(filename, outputText);
+            string file = HttpUtility.UrlDecode(Path.GetFileName(filename));
+            XmlDocument doc = _familyTree.LoadTreeHeader(file, Document.XML, outputText);
             if (doc == null) return false;
             var sourceProgress = new Progress<int>(value => { SetProgress(_sourcesProgress, value); });
             var individualProgress = new Progress<int>(value => { SetProgress(_individualsProgress, value); });
