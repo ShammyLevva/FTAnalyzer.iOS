@@ -108,7 +108,7 @@ namespace FTAnalyzer.iOS
         {
             var outputText = new Progress<string>(AppendMessage);
             string file = HttpUtility.UrlDecode(Path.GetFileName(filename));
-            XmlDocument doc = _familyTree.LoadTreeHeader(file, Document.XML, outputText);
+            XmlDocument doc = _familyTree.LoadTreeHeader(file, Document.Stream, outputText);
             if (doc == null) return false;
             var sourceProgress = new Progress<int>(value => { SetProgress(_sourcesProgress, value); });
             var individualProgress = new Progress<int>(value => { SetProgress(_individualsProgress, value); });
