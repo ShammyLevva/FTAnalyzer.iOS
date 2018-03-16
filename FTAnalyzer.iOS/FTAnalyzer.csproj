@@ -202,6 +202,8 @@
     <BundleResource Include="Resources\Fonts\KUNSTLER.TTF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </BundleResource>
+    <BundleResource Include="Resources\320.png" />
+    <BundleResource Include="Resources\64.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataHandlers\DataGridView.xaml">

@@ -79,9 +79,9 @@
 				<string>public.plain-text</string>
 			</array>
 			<key>UTTypeSize64IconFile</key>
-			<string>Assets.xcassets/AppIcon.appiconset/64</string>
+			<string>64</string>
 			<key>UTTypeSize320IconFile</key>
-			<string>Assets.xcassets/AppIcon.appiconset/320</string>
+			<string>320</string>
 		</dict>
 	</array>
 </dict>

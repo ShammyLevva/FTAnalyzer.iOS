@@ -33,10 +33,6 @@ namespace FTAnalyzer.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextView _statusTextView { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        FTAnalyzer.iOS.GedcomDocumentViewController GedcomReport { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
             if (_familiesProgress != null) {
@@ -62,11 +58,6 @@ namespace FTAnalyzer.iOS
             if (_statusTextView != null) {
                 _statusTextView.Dispose ();
                 _statusTextView = null;
-            }
-
-            if (GedcomReport != null) {
-                GedcomReport.Dispose ();
-                GedcomReport = null;
             }
         }
     }

@@ -46,7 +46,10 @@ namespace FTAnalyzer.iOS
         partial void SelectGedcomButtonEvent(UIButton sender)
         {
             // Allow the Document picker to select files with ged extension
-            string[] allowedUTIs = { UTType.CreatePreferredIdentifier(UTType.TagClassFilenameExtension, "ged", null) };
+            string[] allowedUTIs = { 
+                UTType.CreatePreferredIdentifier(UTType.TagClassFilenameExtension, "ged", null),
+                UTType.CreatePreferredIdentifier(UTType.ImportedTypeDeclarationsKey, "com.ftanalyzer.ged", "public-plain-text")
+            };
             var picker = new UIDocumentPickerViewController(allowedUTIs, UIDocumentPickerMode.Open);
             picker.DidPickDocumentAtUrls += (sndr, pArgs) =>
             {
@@ -54,16 +57,11 @@ namespace FTAnalyzer.iOS
             };
             ThisApp.DocumentLoaded += () =>
             {
-                PerformSegue("SegueToGedcomDocument", sender);
+                PerformSegue("SegueToGedcomDocument", null);
             };
 
             // Display the document picker
             PresentViewController(picker, true, null);
         }
-
-		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-		{
-            base.PrepareForSegue(segue, sender);
-		}
 	}
 }

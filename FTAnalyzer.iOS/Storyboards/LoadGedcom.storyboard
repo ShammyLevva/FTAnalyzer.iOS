@@ -61,7 +61,7 @@
                         <viewControllerLayoutGuide type="top" id="9098"/>
                         <viewControllerLayoutGuide type="bottom" id="9099"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9102" customClass="GedcomDocumentViewController">
+                    <view key="view" contentMode="scaleToFill" id="9102">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" colorSpace="calibratedRGB" red="0.996078431372549" green="0.95686274509803926" blue="0.803921568627451" alpha="1"/>
@@ -123,7 +123,6 @@
                         </accessibility>
                     </view>
                     <connections>
-                        <outlet property="GedcomReport" destination="9102" id="name-outlet-9102"/>
                         <outlet property="_sourcesProgress" destination="9520" id="name-outlet-9520"/>
                         <outlet property="_individualsProgress" destination="9521" id="name-outlet-9521"/>
                         <outlet property="_familiesProgress" destination="9522" id="name-outlet-9522"/>
@@ -169,5 +168,7 @@
         <image name="teardrop_red.png" width="21" height="34"/>
         <image name="Validate.png" width="16" height="16"/>
         <image name="Warning.png" width="16" height="16"/>
+        <image name="320.png" width="320" height="320"/>
+        <image name="64.png" width="64" height="64"/>
     </resources>
 </document>

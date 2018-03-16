@@ -15,7 +15,6 @@ namespace FTAnalyzer.iOS
         IProgress<int> _families;
         IProgress<int> _relationships;
         FamilyTree _familyTree;
-        GedcomDocument _document;
 
         public GedcomDocumentViewController(IntPtr handle) : base(handle)
         {
@@ -25,7 +24,6 @@ namespace FTAnalyzer.iOS
             _families = new Progress<int>(percent => SetProgress(_familiesProgress, percent));
             _relationships = new Progress<int>(percent => SetProgress(_relationshipsProgress, percent));
             _familyTree = FamilyTree.Instance;
-            _document = null;
         }
 
         public IProgress<string> Messages => _messages;
@@ -34,21 +32,32 @@ namespace FTAnalyzer.iOS
         public IProgress<int> Families => _families;
         public IProgress<int> Relationships => _relationships;
 
-        public GedcomDocument Document
-        {
-            get { return _document; }
-            set { 
-                _document = value;
-                if (_document != null)
-                {
-                    ClearAllProgress();
-                    Task.Run(() => LoadTreeAsync(_document.URL.ToString()));
-                    SetupViews();
-                }
-            }
-        }
+        public GedcomDocument Document { get; set; }
 
-        public void ClearAllProgress()
+        public override void ViewDidLoad()
+		{
+            base.ViewDidLoad();
+            ClearAllProgress();
+            Document = ThisApp.Document;
+            if (Document != null)
+            {
+                Task.Run(() => LoadTreeAsync(Document.URL.ToString()));
+                SetupViews();
+            }
+		}
+
+        #region Computed Properties
+        /// <summary>
+        /// Returns the delegate of the current running application
+        /// </summary>
+        /// <value>The this app.</value>
+        public AppDelegate ThisApp
+        {
+            get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
+        }
+        #endregion
+
+		public void ClearAllProgress()
         {
             if (!NSThread.IsMain)
             {
