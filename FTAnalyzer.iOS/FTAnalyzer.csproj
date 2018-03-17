@@ -12,6 +12,11 @@
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <Description>Find hidden data in your Family Tree on the iPad</Description>
 <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+<Authors>Alexander Bisset</Authors>
+<NeutralLanguage>en-GB</NeutralLanguage>
+<Owners>Alexander Bisset</Owners>
+<PackageProjectUrl>http://ipad.ftanalyzer.com</PackageProjectUrl>
+<Title>Family Tree Analyzer</Title>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,7 +55,7 @@
     <AssemblyName>FTAnalyzer</AssemblyName>
     <CodesignProvision>VS: com.ftanalyzer.FTAnalyzer Development</CodesignProvision>
 <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-  </PropertyGroup>
+<RunCodeAnalysis>true</RunCodeAnalysis>  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -89,7 +94,7 @@
     <AssemblyName>FTAnalyzer</AssemblyName>
 <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 <CodesignProvision>VS: com.ftanalyzer.FTAnalyzer Development</CodesignProvision>
-  </PropertyGroup>
+</PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />

@@ -43,8 +43,9 @@ namespace FTAnalyzer.iOS
             Document = ThisApp.Document;
             if (Document != null)
             {
-                Task.Run(() => LoadTreeAsync(Document.URL.ToString()));
-                SetupViews();
+                var result = Task.Run(() => LoadTreeAsync(Document.URL.ToString()));
+                if(result.IsCompletedSuccessfully)
+                    SetupViews();
             }
 		}
 
@@ -110,14 +111,15 @@ namespace FTAnalyzer.iOS
             string file = HttpUtility.UrlDecode(Path.GetFileName(filename));
             XmlDocument doc = _familyTree.LoadTreeHeader(file, Document.Stream, outputText);
             if (doc == null) return false;
-            var sourceProgress = new Progress<int>(value => { SetProgress(_sourcesProgress, value); });
-            var individualProgress = new Progress<int>(value => { SetProgress(_individualsProgress, value); });
-            var familyProgress = new Progress<int>(value => { SetProgress(_familiesProgress, value); });
-            var RelationshipProgress = new Progress<int>(value => { SetProgress(_relationshipsProgress, value); });
-            await Task.Run(() => _familyTree.LoadTreeSources(doc, sourceProgress, outputText));
-            await Task.Run(() => _familyTree.LoadTreeIndividuals(doc, individualProgress, outputText));
-            await Task.Run(() => _familyTree.LoadTreeFamilies(doc, familyProgress, outputText));
-            await Task.Run(() => _familyTree.LoadTreeRelationships(doc, RelationshipProgress, outputText));
+            await Task.Run(() =>
+            {
+                AppendMessage("\n\nFile loaded starting to Analyse");
+                _familyTree.LoadTreeSources(doc, _sources, outputText);
+                _familyTree.LoadTreeIndividuals(doc, _individuals, outputText);
+                _familyTree.LoadTreeFamilies(doc, _families, outputText);
+                _familyTree.LoadTreeRelationships(doc, _relationships, outputText);
+                AppendMessage(string.Format("\nFinished loading and analysing file {0}\n", file));
+             });
             return true;
         }
 
