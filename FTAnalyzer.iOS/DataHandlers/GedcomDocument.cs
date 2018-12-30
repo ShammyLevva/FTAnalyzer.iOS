@@ -6,7 +6,7 @@ using System.Xml;
 using System.IO;
 using System.Text;
 
-namespace FTAnalyzer.iOS
+namespace FTAnalyzer
 {
     [Register("GedcomDocument")]
     public class GedcomDocument : UIDocument

@@ -2,7 +2,7 @@
 using FTAnalyzer.Utilities;
 using UIKit;
 
-namespace FTAnalyzer.iOS
+namespace FTAnalyzer
 {
     public class BindingListViewController<T> : UIViewController
     {

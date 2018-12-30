@@ -6,7 +6,7 @@ using FTAnalyzer.Utilities;
 using Foundation;
 using Xamarin.Forms.DataGrid;
 
-namespace FTAnalyzer.iOS
+namespace FTAnalyzer
 {
     public class BindingListTableSource<T> : UITableViewSource
     {

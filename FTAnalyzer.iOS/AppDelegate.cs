@@ -2,22 +2,16 @@
 using Foundation;
 using UIKit;
 
-namespace FTAnalyzer.iOS
+namespace FTAnalyzer
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
+		// class-level declarations
         public GedcomDocument Document { get; set; }
-
-        // class-level declarations
-
-        public override UIWindow Window
-        {
-            get;
-            set;
-        }
+        public override UIWindow Window { get; set; }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
@@ -77,6 +71,10 @@ namespace FTAnalyzer.iOS
             // Inform caller
             RaiseDocumentLoaded();
         }
+
+        public string GetVersion() => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleShortVersionString").ToString();
+        public int GetBuild() => int.Parse(NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString());
+        public string Version => $"GetVersion ({GetBuild()})";
 
         #region Events
         public delegate void DocumentLoadedDelegate();
