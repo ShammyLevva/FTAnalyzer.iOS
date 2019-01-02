@@ -7,7 +7,7 @@
     <ProjectGuid>{C0954D77-E302-4833-8186-1BA0567FEF15}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FTAnalyzer.iOS</RootNamespace>
+    <RootNamespace>FTAnalyzer</RootNamespace>
     <AssemblyName>FTAnalyzer.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <Description>Find hidden data in your Family Tree on the iPad</Description>
@@ -35,9 +35,10 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>VS: com.ftanalyzer.FTAnalyzer Development</CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
 <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+<LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>pdbonly</DebugType>
@@ -53,9 +54,10 @@
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
     <AssemblyName>FTAnalyzer</AssemblyName>
-    <CodesignProvision>VS: com.ftanalyzer.FTAnalyzer Development</CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
 <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-<RunCodeAnalysis>true</RunCodeAnalysis>  </PropertyGroup>
+<RunCodeAnalysis>true</RunCodeAnalysis>  <LangVersion>7.3</LangVersion>
+</PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -68,8 +70,9 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
     <PlatformTarget>x86</PlatformTarget>
-    <CodesignProvision>VS: com.ftanalyzer.FTAnalyzer Development</CodesignProvision>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
 <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+<LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,10 +93,11 @@
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <AssemblyName>FTAnalyzer</AssemblyName>
 <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-<CodesignProvision>VS: com.ftanalyzer.FTAnalyzer Development</CodesignProvision>
+<CodesignProvision>VS: WildCard Development</CodesignProvision>
+<LangVersion>7.3</LangVersion>
 </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -176,7 +180,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="Storyboards\LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Storyboards\LoadGedcom.storyboard" />
-    <InterfaceDefinition Include="ViewControllers\Main.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Main.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
