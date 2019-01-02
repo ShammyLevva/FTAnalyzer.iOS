@@ -9,8 +9,9 @@ namespace FTAnalyzer
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
-		// class-level declarations
+        // class-level declarations
         public GedcomDocument Document { get; set; }
+        public GedcomDocumentViewController DocumentViewController { get; set;} 
         public override UIWindow Window { get; set; }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
@@ -54,20 +55,15 @@ namespace FTAnalyzer
 
         public void OpenDocument(NSUrl url)
         {
-
-            Console.WriteLine("Attempting to open: {0}", url);
             Document = new GedcomDocument(url);
 
             // Open the document
             Document.Open((success) => {
                 if (success)
-                {
-                    Console.WriteLine("Document Opened");
-                }
+                    DocumentViewController.ProcessDocument();
                 else
                     Console.WriteLine("Failed to Open Document");
             });
-
             // Inform caller
             RaiseDocumentLoaded();
         }

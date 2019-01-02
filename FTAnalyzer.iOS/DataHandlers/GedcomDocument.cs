@@ -1,10 +1,7 @@
-﻿using System;
+﻿using System.IO;
+using System.Text;
 using Foundation;
 using UIKit;
-using FTAnalyzer.Utilities;
-using System.Xml;
-using System.IO;
-using System.Text;
 
 namespace FTAnalyzer
 {
@@ -55,7 +52,6 @@ namespace FTAnalyzer
                 // Inform caller that the document has been modified
                 RaiseDocumentModified(this);
             }
-
             return true;
         }
         #endregion

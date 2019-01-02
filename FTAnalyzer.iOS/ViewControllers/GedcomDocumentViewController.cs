@@ -3,71 +3,53 @@ using System;
 using UIKit;
 using System.Threading.Tasks;
 using System.Xml;
-using FTAnalyzer;
 using System.IO;
 using System.Web;
 
-namespace FTAnalyzer.iOS
+namespace FTAnalyzer
 {
     public partial class GedcomDocumentViewController : UIViewController
     {
-        IProgress<string> _messages;
-        IProgress<int> _sources;
-        IProgress<int> _individuals;
-        IProgress<int> _families;
-        IProgress<int> _relationships;
         FamilyTree _familyTree;
+        public IProgress<string> Messages { get; }
+        public IProgress<int> Sources { get; }
+        public IProgress<int> Individuals { get; }
+        public IProgress<int> Families { get; }
+        public IProgress<int> Relationships { get; }
+
+        public GedcomDocument Document { get; set; }
+        public AppDelegate App => (AppDelegate)UIApplication.SharedApplication.Delegate;
 
         public GedcomDocumentViewController(IntPtr handle) : base(handle)
         {
-            _messages = new Progress<string>(AppendMessage);
-            _sources = new Progress<int>(percent => SetProgress(_sourcesProgress, percent));
-            _individuals = new Progress<int>(percent => SetProgress(_individualsProgress, percent));
-            _families = new Progress<int>(percent => SetProgress(_familiesProgress, percent));
-            _relationships = new Progress<int>(percent => SetProgress(_relationshipsProgress, percent));
+            Messages = new Progress<string>(AppendMessage);
+            Sources = new Progress<int>(percent => SetProgress(_sourcesProgress, percent));
+            Individuals = new Progress<int>(percent => SetProgress(_individualsProgress, percent));
+            Families = new Progress<int>(percent => SetProgress(_familiesProgress, percent));
+            Relationships = new Progress<int>(percent => SetProgress(_relationshipsProgress, percent));
             _familyTree = FamilyTree.Instance;
+            App.DocumentViewController = this;
         }
 
-        public IProgress<string> Messages => _messages;
-        public IProgress<int> Sources => _sources;
-        public IProgress<int> Individuals => _individuals;
-        public IProgress<int> Families => _families;
-        public IProgress<int> Relationships => _relationships;
-
-        public GedcomDocument Document { get; set; }
-
-        public override void ViewDidLoad()
-		{
-            base.ViewDidLoad();
+        public void ProcessDocument()
+        {
             ClearAllProgress();
-            Document = ThisApp.Document;
+            Document = App.Document;
             if (Document != null)
             {
                 var result = Task.Run(() => LoadTreeAsync(Document.URL.ToString()));
-                if(result.IsCompletedSuccessfully)
+                if (result.IsCompletedSuccessfully)
                     SetupViews();
             }
-		}
-
-        #region Computed Properties
-        /// <summary>
-        /// Returns the delegate of the current running application
-        /// </summary>
-        /// <value>The this app.</value>
-        public AppDelegate ThisApp
-        {
-            get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
         }
-        #endregion
 
-		public void ClearAllProgress()
+        public void ClearAllProgress()
         {
             if (!NSThread.IsMain)
             {
                 InvokeOnMainThread(ClearAllProgress);
                 return;
             }
-
             _statusTextView.Text = string.Empty;
             _sourcesProgress.SetProgress(0, false);
             _individualsProgress.SetProgress(0, false);
@@ -82,15 +64,10 @@ namespace FTAnalyzer.iOS
                 InvokeOnMainThread(() => AppendMessage(message));
                 return;
             }
-
             if (_statusTextView.Text == null)
-            {
                 _statusTextView.Text = message;
-            }
             else
-            {
                 _statusTextView.Text += message;
-            }
         }
 
         void SetProgress(UIProgressView progressBar, int percent)
@@ -100,87 +77,30 @@ namespace FTAnalyzer.iOS
                 InvokeOnMainThread(() => SetProgress(progressBar, percent));
                 return;
             }
-
             progressBar.SetProgress(percent, true);
         }
-
 
         public async Task<bool> LoadTreeAsync(string filename)
         {
             var outputText = new Progress<string>(AppendMessage);
             string file = HttpUtility.UrlDecode(Path.GetFileName(filename));
-            XmlDocument doc = _familyTree.LoadTreeHeader(file, Document.Stream, outputText);
-            if (doc == null) return false;
-            await Task.Run(() =>
+            XmlDocument doc = await Task.Run(() => _familyTree.LoadTreeHeader(file, Document.Stream, outputText));
+            if (doc != null)
             {
-                AppendMessage("\n\nFile loaded starting to Analyse");
-                _familyTree.LoadTreeSources(doc, _sources, outputText);
-                _familyTree.LoadTreeIndividuals(doc, _individuals, outputText);
-                _familyTree.LoadTreeFamilies(doc, _families, outputText);
-                _familyTree.LoadTreeRelationships(doc, _relationships, outputText);
-                AppendMessage(string.Format("\nFinished loading and analysing file {0}\n", file));
-             });
-            return true;
+                await Task.Run(() => AppendMessage("\nFile loaded starting to Analyse\n"));
+                await Task.Run(() => _familyTree.LoadTreeSources(doc, Sources, outputText));
+                await Task.Run(() => _familyTree.LoadTreeIndividuals(doc, Individuals, outputText));
+                await Task.Run(() => _familyTree.LoadTreeFamilies(doc, Families, outputText));
+                await Task.Run(() => _familyTree.LoadTreeRelationships(doc, Relationships, outputText));
+                await Task.Run(() => AppendMessage($"\n\nFinished loading and analysing file {file}\n"));
+                return true;
+            }
+            return false;
         }
 
         void SetupViews()
         {
-            
+
         }
-        //public override bool ReadFromUrl(NSUrl url, string typeName, out NSError outError)
-        //{
-        //    outError = NSError.FromDomain(NSError.OsStatusErrorDomain, -4);
-
-        //    GedcomDocumentViewController documentViewController = null;
-        //    BindingListViewController<IDisplayIndividual> individualsViewController = null;
-        //    BindingListViewController<IDisplayFamily> familiesViewController = null;
-        //    BindingListViewController<IDisplaySource> sourcesViewController = null;
-        //    BindingListViewController<IDisplayOccupation> occupationsViewController = null;
-        //    BindingListViewController<IDisplayFact> factsViewController = null;
-        //    UITabBarController tabbedViewController = null;
-
-        //    InvokeOnMainThread(() =>
-        //    {
-        //        var handle = new IntPtr();
-        //        documentViewController = new GedcomDocumentViewController(handle);
-        //        documentViewController.ClearAllProgress();
-
-        //        var mainListsViewController = tabbedViewController.ChildViewControllers[1] as UITabBarController;
-
-        //        individualsViewController = new BindingListViewController<IDisplayIndividual>("Individuals");
-        //        familiesViewController = new BindingListViewController<IDisplayFamily>("Families");
-        //        sourcesViewController = new BindingListViewController<IDisplaySource>("Sources");
-        //        occupationsViewController = new BindingListViewController<IDisplayOccupation>("Occupations");
-        //        factsViewController = new BindingListViewController<IDisplayFact>("Facts");
-
-        //        mainListsViewController.AddChildViewController(individualsViewController);
-        //        mainListsViewController.AddChildViewController(familiesViewController);
-        //        mainListsViewController.AddChildViewController(sourcesViewController);
-        //        mainListsViewController.AddChildViewController(occupationsViewController);
-        //        mainListsViewController.AddChildViewController(factsViewController);
-        //    });
-
-        //    var document = _familyTree.LoadTreeHeader(url.Path, documentViewController.Messages);
-        //    if (document == null)
-        //    {
-        //        documentViewController.Messages.Report("\n\nUnable to load file " + url.Path + "\n");
-        //        return false;
-        //    }
-
-        //    _familyTree.LoadTreeSources(document, documentViewController.Sources, documentViewController.Messages);
-        //    _familyTree.LoadTreeIndividuals(document, documentViewController.Individuals, documentViewController.Messages);
-        //    _familyTree.LoadTreeFamilies(document, documentViewController.Families, documentViewController.Messages);
-        //    _familyTree.LoadTreeRelationships(document, documentViewController.Relationships, documentViewController.Messages);
-
-        //    individualsViewController.RefreshDocumentView(_familyTree.AllDisplayIndividuals);
-        //    familiesViewController.RefreshDocumentView(_familyTree.AllDisplayFamilies);
-        //    sourcesViewController.RefreshDocumentView(_familyTree.AllDisplaySources);
-        //    occupationsViewController.RefreshDocumentView(_familyTree.AllDisplayOccupations);
-        //    factsViewController.RefreshDocumentView(_familyTree.AllDisplayFacts);
-
-        //    documentViewController.Messages.Report("\n\nFinished loading file " + url.Path + "\n");
-        //    return true;
-        //}
- 
     }
 }
