@@ -5,7 +5,7 @@
 	<key>CFBundleName</key>
 	<string>FTAnalyzer</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.ftanalyzer.FTAnalyzer</string>
+	<string>com.ftanalyzer.FTAnalyzer.iPad</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -83,6 +83,6 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 </dict>
 </plist>

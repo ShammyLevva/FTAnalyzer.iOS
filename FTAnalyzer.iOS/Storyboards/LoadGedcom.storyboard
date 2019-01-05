@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="209">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="209">
     <device id="ipad12_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Load Gedcom View Controller-->
         <scene sceneID="208">
             <objects>
-                <viewController id="209" sceneMemberID="viewController" customClass="LoadGedcomViewController">
+                <viewController id="209" customClass="LoadGedcomViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="206"/>
                         <viewControllerLayoutGuide type="bottom" id="207"/>
@@ -18,31 +19,31 @@
                     <view key="view" contentMode="scaleToFill" id="210">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.996078431372549" green="0.95686274509803926" blue="0.803921568627451" alpha="1"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="287" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" image="HighResLogo.png" preservesSuperviewLayoutMargins="YES">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" preservesSuperviewLayoutMargins="YES" image="HighResLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="287">
                                 <rect key="frame" x="508" y="337" width="350" height="350"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinX="YES" flexibleMaxY="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="548" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="524" y="675" width="318" height="27"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="548">
+                                <rect key="frame" x="524" y="695" width="318" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <state key="normal" title="Load GEDCOM File"/>
                                 <connections>
-                                    <action selector="SelectGedcomButtonEvent:" destination="209" id="7071" eventType="touchUpInside"/>
-                                    <segue id="13149" destination="9101" kind="show" identifier="SegueToGedcomDocument"/>
+                                    <action selector="SelectGedcomButtonEvent:" destination="209" eventType="touchUpInside" id="7071"/>
+                                    <segue destination="9101" kind="show" identifier="SegueToGedcomDocument" id="13149"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.95686274509803926" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
-                            <outletCollection id="8837" property="gestureRecognizers" destination="8836"/>
+                            <outletCollection property="gestureRecognizers" destination="8836" appends="YES" id="8837"/>
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="LoadFileButton" destination="548" id="name-outlet-548"/>
                         <outlet property="TapGestureRecogniser" destination="8836" id="name-outlet-8836"/>
                         <outlet property="TreeImage" destination="287" id="name-outlet-287"/>
-                        <outlet property="LoadFileButton" destination="548" id="name-outlet-548"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="211" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -54,9 +55,10 @@
             </objects>
             <point key="canvasLocation" x="488" y="-113"/>
         </scene>
+        <!--Gedcom Document View Controller-->
         <scene sceneID="9100">
             <objects>
-                <viewController id="9101" sceneMemberID="viewController" customClass="GedcomDocumentViewController">
+                <viewController id="9101" customClass="GedcomDocumentViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9098"/>
                         <viewControllerLayoutGuide type="bottom" id="9099"/>
@@ -64,69 +66,69 @@
                     <view key="view" contentMode="scaleToFill" id="9102">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.996078431372549" green="0.95686274509803926" blue="0.803921568627451" alpha="1"/>
                         <subviews>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9520" fixedFrame="YES">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9520">
                                 <rect key="frame" x="285" y="74" width="150" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9521" fixedFrame="YES">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9521">
                                 <rect key="frame" x="285" y="110" width="150" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9522" fixedFrame="YES">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9522">
                                 <rect key="frame" x="285" y="148" width="150" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9523" fixedFrame="YES">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9523">
                                 <rect key="frame" x="285" y="184" width="150" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Sources" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9525" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading Sources" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9525">
                                 <rect key="frame" x="92" y="64" width="170" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Individuals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9526" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading Individuals" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9526">
                                 <rect key="frame" x="92" y="101" width="170" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Families" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9527" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading Families" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9527">
                                 <rect key="frame" x="92" y="138" width="170" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Relationships" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9528" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading Relationships" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9528">
                                 <rect key="frame" x="92" y="175" width="170" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="9529" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="empty text box">
-                                <rect key="frame" x="20" y="232" width="1326" height="757"/>
-                                <autoresizingMask key="autoresizingMask" heightSizable="YES" widthSizable="YES" flexibleMinY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9529">
+                                <rect key="frame" x="20" y="230.5" width="1326" height="758.5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
+                        <color key="backgroundColor" red="0.99607843137254903" green="0.95686274509803926" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                         <accessibility key="accessibilityConfiguration">
                             <bool key="isElement" value="YES"/>
                         </accessibility>
                     </view>
                     <connections>
-                        <outlet property="_sourcesProgress" destination="9520" id="name-outlet-9520"/>
-                        <outlet property="_individualsProgress" destination="9521" id="name-outlet-9521"/>
                         <outlet property="_familiesProgress" destination="9522" id="name-outlet-9522"/>
+                        <outlet property="_individualsProgress" destination="9521" id="name-outlet-9521"/>
                         <outlet property="_relationshipsProgress" destination="9523" id="name-outlet-9523"/>
+                        <outlet property="_sourcesProgress" destination="9520" id="name-outlet-9520"/>
                         <outlet property="_statusTextView" destination="9529" id="name-outlet-9529"/>
                     </connections>
                 </viewController>
@@ -137,38 +139,5 @@
     </scenes>
     <resources>
         <image name="HighResLogo.png" width="1024" height="1024"/>
-        <image name="arrow-left.png" width="16" height="16"/>
-        <image name="arrow-right.png" width="16" height="16"/>
-        <image name="Complete_OK.png" width="16" height="16"/>
-        <image name="CriticalError.png" width="16" height="16"/>
-        <image name="DeleteHS.png" width="16" height="16"/>
-        <image name="EditLocation.png" width="16" height="16"/>
-        <image name="Filter.png" width="16" height="16"/>
-        <image name="Flagged.png" width="16" height="16"/>
-        <image name="FTAnalyzer.ico" width="64" height="64"/>
-        <image name="GoogleMatch.png" width="16" height="16"/>
-        <image name="GooglePartial.png" width="16" height="16"/>
-        <image name="OS50kFuzzy.png" width="16" height="16"/>
-        <image name="OS50kMatch.png" width="16" height="16"/>
-        <image name="OS50kPartial.png" width="16" height="16"/>
-        <image name="OutOfBounds.png" width="16" height="16"/>
-        <image name="people35.png" width="35" height="35"/>
-        <image name="Pointer.bmp" width="16" height="16"/>
-        <image name="QuestionMark.png" width="16" height="16"/>
-        <image name="Restart.bmp" width="16" height="16"/>
-        <image name="Save.bmp" width="16" height="16"/>
-        <image name="SaveExit.bmp" width="16" height="16"/>
-        <image name="Scroll_NoText.png" width="16" height="16"/>
-        <image name="SeriousWarning.png" width="16" height="16"/>
-        <image name="Stop.bmp" width="16" height="16"/>
-        <image name="teardrop_black.png" width="21" height="34"/>
-        <image name="teardrop_blue.cur" width="21" height="34"/>
-        <image name="teardrop_blue.png" width="21" height="34"/>
-        <image name="teardrop_lightgreen.png" width="21" height="34"/>
-        <image name="teardrop_red.png" width="21" height="34"/>
-        <image name="Validate.png" width="16" height="16"/>
-        <image name="Warning.png" width="16" height="16"/>
-        <image name="320.png" width="320" height="320"/>
-        <image name="64.png" width="64" height="64"/>
     </resources>
 </document>
