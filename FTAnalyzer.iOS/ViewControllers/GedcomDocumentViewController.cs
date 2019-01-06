@@ -1,10 +1,11 @@
-using Foundation;
 using System;
-using UIKit;
-using System.Threading.Tasks;
-using System.Xml;
 using System.IO;
+using System.Threading.Tasks;
 using System.Web;
+using System.Xml;
+using CoreGraphics;
+using Foundation;
+using UIKit;
 
 namespace FTAnalyzer
 {
@@ -29,6 +30,23 @@ namespace FTAnalyzer
             Relationships = new Progress<int>(percent => SetProgress(_relationshipsProgress, percent));
             _familyTree = FamilyTree.Instance;
             App.DocumentViewController = this;
+        }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+            var height = UIScreen.MainScreen.Bounds.Height;
+            var width = UIScreen.MainScreen.Bounds.Width;
+            var label = new UILabel(new CGRect(_sourcesProgress.Frame.Right + 20, 75, width / 2.0f + 100, height / 9.25f))
+            {
+                Font = UIFont.FromName("Kunstler Script", height / 9.5f),
+                Text = "Family Tree Analyzer",
+            };
+            Add(label);
+            _sourcesProgress.Transform = CGAffineTransform.MakeScale(1.0f, 5.0f);
+            _individualsProgress.Transform = CGAffineTransform.MakeScale(1.0f, 5.0f);
+            _familiesProgress.Transform = CGAffineTransform.MakeScale(1.0f, 5.0f);
+            _relationshipsProgress.Transform = CGAffineTransform.MakeScale(1.0f, 5.0f);
         }
 
         public void ProcessDocument()
@@ -87,12 +105,15 @@ namespace FTAnalyzer
             XmlDocument doc = await Task.Run(() => _familyTree.LoadTreeHeader(file, Document.Stream, outputText));
             if (doc != null)
             {
-                await Task.Run(() => AppendMessage("\nFile loaded starting to Analyse\n"));
-                await Task.Run(() => _familyTree.LoadTreeSources(doc, Sources, outputText));
-                await Task.Run(() => _familyTree.LoadTreeIndividuals(doc, Individuals, outputText));
-                await Task.Run(() => _familyTree.LoadTreeFamilies(doc, Families, outputText));
-                await Task.Run(() => _familyTree.LoadTreeRelationships(doc, Relationships, outputText));
-                await Task.Run(() => AppendMessage($"\n\nFinished loading and analysing file {file}\n"));
+                await Task.Run(() =>
+                {
+                    AppendMessage("\nFile loaded starting to Analyse\n");
+                    _familyTree.LoadTreeSources(doc, Sources, outputText);
+                    _familyTree.LoadTreeIndividuals(doc, Individuals, outputText);
+                    _familyTree.LoadTreeFamilies(doc, Families, outputText);
+                    _familyTree.LoadTreeRelationships(doc, Relationships, outputText);
+                    AppendMessage($"\n\nFinished loading and analysing file {file}\n");
+                });
                 return true;
             }
             return false;

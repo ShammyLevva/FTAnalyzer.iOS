@@ -37,21 +37,6 @@
 	<array>
 		<string>Fonts/KUNSTLER.TTF</string>
 	</array>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeName</key>
-			<string>GEDCOMDocument</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>ged</string>
-			</array>
-			<key>CFBundleTypeIconFiles</key>
-			<array>
-				<string>Assets.xcassets/AppIcon.appiconset/1024</string>
-			</array>
-		</dict>
-	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
@@ -83,6 +68,6 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>3</string>
+	<string>5</string>
 </dict>
 </plist>

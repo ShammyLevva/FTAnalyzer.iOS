@@ -128,12 +128,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.3.4.0.1009999\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.AccessControl">
-      <HintPath>..\packages\System.Security.AccessControl.4.5.0\lib\netstandard2.0\System.Security.AccessControl.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Permissions">
-      <HintPath>..\packages\System.Security.Permissions.4.5.0\lib\netstandard2.0\System.Security.Permissions.dll</HintPath>
-    </Reference>
     <Reference Include="GoogleAnalyticsTracker.Core">
       <HintPath>..\packages\GoogleAnalyticsTracker.Core.4.6.8\lib\portable45-net45+win8+wpa81\GoogleAnalyticsTracker.Core.dll</HintPath>
     </Reference>
@@ -141,9 +135,6 @@
       <HintPath>..\packages\GoogleAnalyticsTracker.Simple.4.6.8\lib\portable45-net45+win8+wpa81\GoogleAnalyticsTracker.Simple.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Security.Principal.Windows">
-      <HintPath>..\packages\System.Security.Principal.Windows.4.5.1\lib\netstandard2.0\System.Security.Principal.Windows.dll</HintPath>
-    </Reference>
     <Reference Include="I18N" />
     <Reference Include="I18N.West" />
   </ItemGroup>
@@ -229,15 +220,9 @@
     <Compile Include="Utilities\UIHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ITunesArtwork Include="Resources\iTunesArtwork" />
-    <ITunesArtwork Include="Resources\iTunesArtwork%402x" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\Fonts\KUNSTLER.TTF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </BundleResource>
-    <BundleResource Include="Resources\320.png" />
-    <BundleResource Include="Resources\64.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DataHandlers\DataGridView.xaml">
