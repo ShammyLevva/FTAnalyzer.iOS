@@ -1,9 +1,15 @@
-﻿using UIKit;
+﻿using System;
+using System.IO;
+using UIKit;
 
 namespace FTAnalyzer
 {
     public static class UIHelpers
     {
+        public static int Yes => 1000;
+        public static int No => 1001;
+        public static int Cancel => (int)UIAlertActionStyle.Cancel;
+
         public static int ShowMessage(string message) => ShowMessage(message, "FTAnalyzer");
         public static int ShowMessage(string message, string title)
         {
@@ -24,8 +30,22 @@ namespace FTAnalyzer
             return Yes;
         }
 
-        public static int Yes => 1000;
-        public static int No => 1001;
-        public static int Cancel => (int) UIAlertActionStyle.Cancel;
+        public static string CreateTempFile()
+        {
+            string fileName = string.Empty;
+            try
+            {
+                fileName = Path.GetTempFileName();
+                FileInfo fileInfo = new FileInfo(fileName)
+                {
+                    Attributes = FileAttributes.Temporary
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Unable to create TEMP file or set its attributes: " + ex.Message);
+            }
+            return fileName;
+        }
     }
 }

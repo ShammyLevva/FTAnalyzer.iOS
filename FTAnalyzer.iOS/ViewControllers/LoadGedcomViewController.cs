@@ -5,20 +5,24 @@ using CoreGraphics;
 using MobileCoreServices;
 using UIKit;
 using Foundation;
+using FTAnalyzer.Utilities;
+using System.IO;
+using System.Net;
 
 namespace FTAnalyzer.iOS
 {
     public partial class LoadGedcomViewController : UIViewController
     {
         FamilyTree _familyTree;
+        AppDelegate App => (AppDelegate)UIApplication.SharedApplication.Delegate;
 
         public LoadGedcomViewController (IntPtr handle) : base (handle)
         {
             _familyTree = FamilyTree.Instance;
         }
 
-		public override void ViewDidLoad()
-		{
+        public override void ViewDidLoad()
+        {
             base.ViewDidLoad();
             var height = UIScreen.MainScreen.Bounds.Height;
             var width = UIScreen.MainScreen.Bounds.Width;
@@ -30,18 +34,7 @@ namespace FTAnalyzer.iOS
             Add(label);
             TreeImage.AddGestureRecognizer(TapGestureRecogniser);
 
-		}
-
-        #region Computed Properties
-        /// <summary>
-        /// Returns the delegate of the current running application
-        /// </summary>
-        /// <value>The this app.</value>
-        public AppDelegate ThisApp
-        {
-            get { return (AppDelegate)UIApplication.SharedApplication.Delegate; }
         }
-        #endregion
 
         partial void SelectGedcomButtonEvent(UIButton sender)
         {
@@ -51,17 +44,47 @@ namespace FTAnalyzer.iOS
                 UTType.CreatePreferredIdentifier(UTType.ImportedTypeDeclarationsKey, "com.ftanalyzer.ged", "public-plain-text")
             };
             var picker = new UIDocumentPickerViewController(allowedUTIs, UIDocumentPickerMode.Open);
-            picker.DidPickDocumentAtUrls += (sndr, pArgs) =>
-            {
-                ThisApp.OpenDocument(pArgs.Urls[0]);
-            };
-            ThisApp.DocumentLoaded += () =>
-            {
-                PerformSegue("SegueToGedcomDocument", null);
-            };
+            picker.DidPickDocumentAtUrls += (sndr, pArgs) => App.OpenDocument(pArgs.Urls[0]);
+            App.DocumentLoaded += () => PerformSegue("SegueToGedcomDocument", null);
 
             // Display the document picker
             PresentViewController(picker, true, null);
         }
-	}
+
+        partial void PasteGedcomButtonEvent(UIButton sender)
+        {
+            UIPasteboard clipboard = UIPasteboard.General;
+            if(clipboard.HasStrings && clipboard.String.StartsWith("http"))
+            {
+                App.DocumentLoaded += () => PerformSegue("SegueToGedcomDocument", null);
+                NSUrl url = CreateTempfileFromURL(clipboard.String);
+                if(url != null)
+                    App.OpenDocument(url);
+            }
+        }
+
+        NSUrl CreateTempfileFromURL(string webURL)
+        {
+            try
+            {
+                string tempfile = UIHelpers.CreateTempFile();
+                if (!string.IsNullOrEmpty(tempfile))
+                {
+                    StreamWriter writer = new StreamWriter(tempfile);
+                    using (WebClient client = new WebClient())
+                    {
+                        string s = client.DownloadString(webURL);
+                        writer.Write(s);
+                    }
+                    writer.Close();
+                    return new NSUrl(tempfile);
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return null;
+        }
+    }
 }

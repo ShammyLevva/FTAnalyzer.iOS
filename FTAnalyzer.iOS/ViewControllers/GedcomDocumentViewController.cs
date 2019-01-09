@@ -19,7 +19,7 @@ namespace FTAnalyzer
         public IProgress<int> Relationships { get; }
 
         public GedcomDocument Document { get; set; }
-        public AppDelegate App => (AppDelegate)UIApplication.SharedApplication.Delegate;
+        AppDelegate App => (AppDelegate)UIApplication.SharedApplication.Delegate;
 
         public GedcomDocumentViewController(IntPtr handle) : base(handle)
         {
@@ -29,12 +29,13 @@ namespace FTAnalyzer
             Families = new Progress<int>(percent => SetProgress(_familiesProgress, percent));
             Relationships = new Progress<int>(percent => SetProgress(_relationshipsProgress, percent));
             _familyTree = FamilyTree.Instance;
-            App.DocumentViewController = this;
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            _versionLabel.Text = $"FTAnalyzer {App.Version}. Family Tree Analyzer";
+            App.DocumentViewController = this;
             var height = UIScreen.MainScreen.Bounds.Height;
             var width = UIScreen.MainScreen.Bounds.Width;
             var label = new UILabel(new CGRect(_sourcesProgress.Frame.Right + 20, 75, width / 2.0f + 100, height / 9.25f))

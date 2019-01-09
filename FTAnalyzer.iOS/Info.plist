@@ -67,7 +67,22 @@
 			<string>320</string>
 		</dict>
 	</array>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>GEDCOM</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>ged</string>
+			</array>
+			<key>CFBundleTypeIconFiles</key>
+			<array>
+				<string>512</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>5</string>
+	<string>7</string>
 </dict>
 </plist>

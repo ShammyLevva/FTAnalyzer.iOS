@@ -33,6 +33,10 @@ namespace FTAnalyzer
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextView _statusTextView { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel _versionLabel { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
             if (_familiesProgress != null) {
@@ -58,6 +62,11 @@ namespace FTAnalyzer
             if (_statusTextView != null) {
                 _statusTextView.Dispose ();
                 _statusTextView = null;
+            }
+
+            if (_versionLabel != null) {
+                _versionLabel.Dispose ();
+                _versionLabel = null;
             }
         }
     }

@@ -19,6 +19,10 @@ namespace FTAnalyzer.iOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton PasteGEDCOMbutton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITapGestureRecognizer TapGestureRecogniser { get; set; }
 
         [Outlet]
@@ -29,6 +33,10 @@ namespace FTAnalyzer.iOS
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void ImageTapEvent (UIKit.UITapGestureRecognizer sender);
 
+        [Action ("PasteGedcomButtonEvent:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void PasteGedcomButtonEvent (UIKit.UIButton sender);
+
         [Action ("SelectGedcomButtonEvent:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void SelectGedcomButtonEvent (UIKit.UIButton sender);
@@ -38,6 +46,11 @@ namespace FTAnalyzer.iOS
             if (LoadFileButton != null) {
                 LoadFileButton.Dispose ();
                 LoadFileButton = null;
+            }
+
+            if (PasteGEDCOMbutton != null) {
+                PasteGEDCOMbutton.Dispose ();
+                PasteGEDCOMbutton = null;
             }
 
             if (TapGestureRecogniser != null) {

@@ -1,5 +1,6 @@
 ﻿using System;
 using Foundation;
+using FTAnalyzer.Utilities;
 using UIKit;
 
 namespace FTAnalyzer
@@ -18,7 +19,7 @@ namespace FTAnalyzer
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
-
+            Analytics.TrackAction(Analytics.MainFormAction, Analytics.FTAStartupAction);
             return true;
         }
 
@@ -66,11 +67,12 @@ namespace FTAnalyzer
             });
             // Inform caller
             RaiseDocumentLoaded();
+            Analytics.TrackAction(Analytics.MainFormAction, Analytics.LoadGEDCOMEvent);
         }
 
         public string GetVersion() => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleShortVersionString").ToString();
         public int GetBuild() => int.Parse(NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString());
-        public string Version => $"GetVersion ({GetBuild()})";
+        public string Version => $"v{GetVersion()} (Build {GetBuild()}-iOS)";
 
         #region Events
         public delegate void DocumentLoadedDelegate();
